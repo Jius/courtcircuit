@@ -3,10 +3,10 @@ namespace Blog\Views;
 
 use Tiimber\View;
 
-class ProducerRegisterView extends View
+class ProducerNewView extends View
 {
   const EVENTS = [
-    'request::producer_register' => 'content'
+    'request::producer::new' => 'content'
   ];
 
   const TPL = '
@@ -59,7 +59,7 @@ class ProducerRegisterView extends View
         <input placeholder="Placeholder" id="posLong" type="text" name="posLong">
         
         <br/>
-        <button type="submit" name="action">Submit</button>
+        <button type="submit" name="action">Submit</button
     </form>
   ';
 }

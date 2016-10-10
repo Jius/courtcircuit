@@ -2,11 +2,17 @@
   "index": {
     "route": "/"
   },
-  "producer_register": {
+  "producer::new": {
     "route": "/producteur"
   },
-  "producer_create": {
+  "producer::create": {
     "route": "/pro/create"
+  },
+  "producer::show": {
+   "route": "/producteur/{id}",
+   "params": {
+     "id": ".+"
+   }
   },
   "hello": {
     "route": "/hello"
