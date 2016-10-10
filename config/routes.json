@@ -1,0 +1,11 @@
+{
+  "index": {
+    "route": "/"
+  },
+  "producer_create": {
+    "route": "/producteur"
+  },
+  "hello": {
+    "route": "/hello"
+  }
+}
