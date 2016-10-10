@@ -2,8 +2,11 @@
   "index": {
     "route": "/"
   },
-  "producer_create": {
+  "producer_register": {
     "route": "/producteur"
+  },
+  "producer_create": {
+    "route": "/pro/create"
   },
   "hello": {
     "route": "/hello"
