@@ -16,7 +16,8 @@ class Application
  {
    $this->setRoot(dirname(__DIR__));
    $this->setCacheFolder(dirname(__DIR__) . '/cache');
-   #R::setup('mysql:host=localhost;dbname=c9', 'dious', '');
+   R::setup('mysql:host=localhost;dbname=c9', 'jius', '');
+   R::fancyDebug( TRUE );
    $this->setHost('0.0.0.0');
    $this->setPort(8080);
    (new Logger());
