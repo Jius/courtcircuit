@@ -15,18 +15,28 @@ class SaveAction extends Action
    'request::producer::create'
  ];
  
- 
  public function onPost($request, $args)
  {
-    $this->producer = R::dispense('producer');
     
     $post = (array) $request->post;
     
+    $this->producer = R::dispense('producer');
     foreach (array_shift($post) as $key=>$value)
     {
-     $this->producer->$key = $value;
+      if ($key === 'tags' && $value !== '') {
+       $datas = explode(';',$value);
+       $tags = array();
+       foreach ($datas as $i=>$tag) {
+        if (!empty($tag)) {
+         array_push($tags, $tag);
+        }
+       }
+       R::addTags( $this->producer, $tags);
+       
+      } else {
+       $this->producer->$key = $value;
+      }
     }
-    
     $id = R::store($this->producer);
     
    $this->redirect('/');
