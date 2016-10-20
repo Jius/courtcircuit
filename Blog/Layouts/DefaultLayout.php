@@ -13,7 +13,33 @@ class DefaultLayout extends Layout
     <title>Court-circuit</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    
+    <style>
+      .no-bottom {
+        margin-bottom: 0px !important;
+      }
+      .search {
+        -webkit-border-radius: 5px 5px 5px 5px !important;
+        border-radius: 5px 5px 5px 5px !important;
+      }
+      .submit-search{
+        padding: 0 1.5rem !important;
+      }
+      .submit-search i{
+        font-size: 2rem !important;
+      }
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #767570 !important;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        color: #767570 !important;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        color: #767570 !important;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        color: #767570 !important;
+      }
+    </style>
   </head>
   <body>
     <div class="container">

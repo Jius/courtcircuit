@@ -10,7 +10,22 @@ class IndexView extends View
   ];
 
   const TPL = '
-    <a href="/carte">Voir les producteurs</a>
-    <a href="/producteur">Inscrire un producteurs</a>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s4 offset-s4">
+          <input id="q" name="q" class="search grey lighten-4" placeholder="Que recherchez-vous ?" type="text">
+        </div>
+        <div class="input-field col s2">
+          <button class="btn waves-effect waves-light cyan submit-search" type="submit" name="action">
+            <i class="material-icons">search</i>
+          </button>
+        </div>
+        <div class="input-field col s2">
+          <a href="/producteur">Inscrire un producteurs</a>
+        </div>
+      </div>
+    </form>
+  </div>
   ';
 }
