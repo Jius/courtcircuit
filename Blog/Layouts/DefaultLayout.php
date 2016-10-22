@@ -34,6 +34,15 @@ class DefaultLayout extends Layout
       .submit-search i{
         font-size: 2rem !important;
       }
+      .producer-form {
+        margin-top: 20px;
+      }
+      .producer-form .hook{
+        font-size: 26px;
+      }
+      .step-indicator {
+        margin-bottom: 30px;
+      }
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: #767570 !important;
       }
@@ -77,6 +86,9 @@ class DefaultLayout extends Layout
         $('.step-prev').fadeOut();
         
         var cpt=1, steps = $('.step').length;
+        $('.step-indicator .active').html(cpt);
+        $('.step-indicator .total').html(steps);
+        
         $('.step').each(function() {
           $(this).attr('data-step', cpt);
           if (cpt>1) {
@@ -92,6 +104,7 @@ class DefaultLayout extends Layout
          
          $('.step-next').click(function() {
           var target=parseInt($(this).attr('link-step'), 10);
+          $('.step-indicator .active').html(target);
           if (target - 1 > 0) {
             $('.step-prev').fadeIn();
           }
@@ -110,6 +123,7 @@ class DefaultLayout extends Layout
          
          $('.step-prev').click(function() {
           var target=parseInt($(this).attr('link-step'), 10);
+          $('.step-indicator .active').html(target);
           
           if (target - 1 <= 0) {
             $(this).hide();

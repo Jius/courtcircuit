@@ -13,7 +13,10 @@ class ProducerNewView extends View
   
   const TPL = <<<HTML
 <div class="row">
-  <form action="/pro/create" method="post" class="col s6 offset-s3">
+  <form action="/pro/create" method="post" class="col s6 offset-s3 producer-form">
+    <p class="hook center-align">INSCRIPTION</p>
+    <p class="step-indicator center-align">Etape <span class="active">1</span> / <span class="total">3</span></p>
+            
     <div class="step">
       <div class="row">
         <div class="input-field col s6">
@@ -42,20 +45,6 @@ class ProducerNewView extends View
         </div>
       </div>
       
-      <div class="row">
-        <div class="input-field col s12">
-          <select multiple name="labels">
-            <option value="" disabled selected>Possèdez vous des labels ?</option>
-            {{#labels}}
-              <option value="{{id}}">{{title}}</option> 
-            {{/labels}}
-            {{^labels}}
-              <p>Aucun label n'a été ajoutée</p>
-            {{/labels}}
-          </select>
-          <label for="labels">Label(s): </label>
-        </div>
-      </div>
       
       <div class="row">
         <div class="input-field col s12">
