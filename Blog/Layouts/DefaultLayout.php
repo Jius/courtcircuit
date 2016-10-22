@@ -57,7 +57,7 @@ class DefaultLayout extends Layout
   
     <nav>
       <div class="nav-wrapper light-blue accent-2">
-        <a href="#" class="brand-logo">Court-circuit</a>
+        <a href="/" class="brand-logo">Court-circuit</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="/producteur">Producteur</a></li>
         </ul>
