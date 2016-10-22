@@ -20,9 +20,16 @@ class DefaultLayout extends Layout
       .search {
         -webkit-border-radius: 5px 5px 5px 5px !important;
         border-radius: 5px 5px 5px 5px !important;
+        border: 1px solid #e0e0e0  !important;
       }
-      .submit-search{
-        padding: 0 1.5rem !important;
+      .search-btn{
+        margin-top: 10px !important;
+      }
+      .my-location {
+        margin: 0 0 0 30px;
+      }
+      .my-location i{
+        color: #9e9e9e !important;
       }
       .submit-search i{
         font-size: 2rem !important;
@@ -39,9 +46,24 @@ class DefaultLayout extends Layout
       :-moz-placeholder { /* Firefox 18- */
         color: #767570 !important;
       }
+      
+      /**Margin Top**/
+      .m-t-med {
+        margin-top: 20px !important;
+      }
     </style>
   </head>
-  <body>
+  <body class="blue-grey lighten-5">
+  
+    <nav>
+      <div class="nav-wrapper light-blue accent-2">
+        <a href="#" class="brand-logo">Court-circuit</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/producteur">Producteur</a></li>
+        </ul>
+      </div>
+    </nav>
+        
     <div class="container">
       {{{content}}}
     </div>
