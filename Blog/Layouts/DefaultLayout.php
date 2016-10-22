@@ -43,6 +43,10 @@ class DefaultLayout extends Layout
       .step-indicator {
         margin-bottom: 30px;
       }
+      .step .caption {
+        color: #9e9e9e;
+        font-size: 1rem;
+      }
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: #767570 !important;
       }
@@ -140,6 +144,29 @@ class DefaultLayout extends Layout
           }
           
          });
+         
+         //TAGS
+          $('.chips-placeholder').material_chip({
+            placeholder: 'Entrer un mot-clé',
+            secondaryPlaceholder: '+Mot-clé',
+          });
+         
+         //SUBMIT FORM PRODUCER
+         $('#submit-producer').click(function () {
+           var tags = '';
+           $('.chips .chip').each(function() {
+              var tag = $(this).text();
+              if(tag.indexOf('close') >= 0){
+                tag = tag.replace('close', '');
+                tags = tags + tag + ';';
+              } else {
+                tags = tags + tag + ';';
+              }
+           });
+           
+          $('#hiddentags').val(tags);
+         });
+         
       });
     </script>
   </body>

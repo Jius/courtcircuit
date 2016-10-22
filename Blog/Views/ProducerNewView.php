@@ -45,13 +45,9 @@ class ProducerNewView extends View
         </div>
       </div>
       
-      
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Placeholder" id="tags" type="text" name="tags" class="validate">
-          <label for="tags">Remplissez quelques mots-clés (séparé par un ;) afin de mieux vous retrouver. </label>
-        </div>
-      </div>
+      <p class="caption">Insérer des mots-clés pour mieux vous retrouver, par les internautes</p>
+      <div class="chips chips-placeholder"></div>
+      <input id="hiddentags" type="hidden" name="tags">
     </div>
     
     <div class="step">
@@ -119,7 +115,7 @@ class ProducerNewView extends View
       
       <div class="row">
         <div class="col s4 offset-s8">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Enregistrer
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit-producer">Enregistrer
             <i class="material-icons right">send</i>
           </button>
         </div>

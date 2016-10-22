@@ -17,7 +17,6 @@ class SaveAction extends Action
  
  public function onPost($request, $args)
  {
-    
     $post = (array) $request->post;
     
     $this->producer = R::dispense('producer');
