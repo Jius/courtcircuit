@@ -67,15 +67,19 @@ class DefaultLayout extends Layout
     </style>
   </head>
   <body class="blue-grey lighten-5">
-  
     <nav>
       <div class="nav-wrapper light-blue accent-2">
-        <a href="/" class="brand-logo">Court-circuit</a>
-        <ul id="nav-mobile" class="right">
+        <a href="/" class="brand-logo">CourtCircuit</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/producteur">Producteur</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
           <li><a href="/producteur">Producteur</a></li>
         </ul>
       </div>
     </nav>
+          
         
     <div class="container">
       {{{content}}}
@@ -85,6 +89,8 @@ class DefaultLayout extends Layout
     <script>
       $(document).ready(function() {
         $('select').material_select();
+        $(".button-collapse").sideNav();
+        
         
         //Init step form producer
         $('.step-prev').fadeOut();
