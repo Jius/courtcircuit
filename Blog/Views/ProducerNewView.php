@@ -26,7 +26,7 @@ class ProducerNewView extends View
         
         <div class="input-field col s6">
           <select name="category">
-            <option value="" disabled selected>Choississez une catégorie</option>
+            <option value="" disabled selected>Choisissez une catégorie</option>
             {{#categories}}
               <option value="{{id}}">{{title}}</option> 
             {{/categories}}
@@ -42,6 +42,21 @@ class ProducerNewView extends View
         <div class="input-field col s12">
           <textarea  id="description" name="description" class="materialize-textarea"></textarea>
           <label for="description">Que proposez vous en produits locaux ? </label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <select multiple name="labels[]">
+            <option value="" disabled selected>Possèdez vous des labels ?</option>
+            {{#labels}}
+              <option value="{{id}}">{{title}}</option> 
+            {{/labels}}
+            {{^labels}}
+              <p>Aucun label n'a été ajoutée</p>
+            {{/labels}}
+          </select>
+          <label for="labels">Label(s): </label>
         </div>
       </div>
       
