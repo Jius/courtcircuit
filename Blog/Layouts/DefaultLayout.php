@@ -11,9 +11,12 @@ class DefaultLayout extends Layout
   <head>
     <meta charset="utf-8">
     <title>Court-circuit</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.css">
+    
     <style>
       .no-bottom {
         margin-bottom: 0px !important;
@@ -68,6 +71,16 @@ class DefaultLayout extends Layout
         width: 100%;
       }
       
+      #adress-map .leaflet-pelias-input {
+        box-sizing: border-box !important;
+        border-style: none !important;
+        padding-left: 26px;
+        width: 100%;
+      }
+      #adress-map .leaflet-pelias-input:focus {
+        border-style: none none solid!important;
+      }
+      
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: #767570 !important;
       }
@@ -114,9 +127,13 @@ class DefaultLayout extends Layout
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.js"></script>
     
     <script>
     //Geolocation + LeafletJs
+    
+    //Primary Map, on Index (map)
+    
     if (document.getElementById("map")) {
       var map = L.map('map').fitWorld();
       
@@ -134,10 +151,10 @@ class DefaultLayout extends Layout
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
     
-        L.marker(e.latlng).addTo(map)
+        L.marker(e.latlng).addTo(this)
             .bindPopup("You are within " + radius + " meters from this point").openPopup();
     
-        L.circle(e.latlng, radius).addTo(map);
+        L.circle(e.latlng, radius).addTo(this);
     }
     
     function onLocationError(e) {
@@ -154,15 +171,30 @@ class DefaultLayout extends Layout
       document.getElementById("map").style.height = heightMap + "px";
     }
     
+    //Secondary map, in help when producer register.
+    if (document.getElementById("adress-map")) {
+      var adressMap = L.map('adress-map').fitWorld();
+      
+      L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 18
+      }).addTo(adressMap);
+      
+      adressMap.locate({setView: true, maxZoom: 14});
+      
+      L.control.geocoder('mapzen-aX1TAnZ').addTo(adressMap);
+      
+      adressMap.on('locationfound', onLocationFound);
+      adressMap.on('locationerror', onLocationError);
+    }
+    
       $(document).ready(function() {
-        
         if ($('#map').length > 0) {
           $(window).resize();
           $(window).resize(function() {
               initMapHeight();
           });
         }
-        
         
         $('select').material_select();
         $(".button-collapse").sideNav();

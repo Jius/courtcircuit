@@ -96,6 +96,9 @@ class ProducerNewView extends View
           <label for="city">Ville: </label>
         </div>
       </div>
+      
+      <div id="adress-map" style="height: 300px"></div>
+      
     </div>
     
     <div class="step">
