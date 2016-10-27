@@ -109,29 +109,27 @@ class DefaultLayout extends Layout
       </div>
     </nav>
           
-    <div id="map"></div>
-    <!-- <a class="btn-floating btn-large waves-effect waves-light white my-location"><i class="material-icons">my_location</i></a> -->
-    <div class="container">
-      {{{content}}}
-    </div>
+    {{{content}}}
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     
     <script>
     //Geolocation + LeafletJs
-    
-    var map = L.map('map').fitWorld();
-    
-    L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18
-    }).addTo(map);
-    
-    map.locate({setView: true, maxZoom: 14});
-    
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
+    if (document.getElementById("map")) {
+      var map = L.map('map').fitWorld();
+      
+      L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 18
+      }).addTo(map);
+      
+      map.locate({setView: true, maxZoom: 14});
+      
+      map.on('locationfound', onLocationFound);
+      map.on('locationerror', onLocationError);
+    }
     
     function onLocationFound(e) {
         var radius = e.accuracy / 2;
@@ -158,10 +156,12 @@ class DefaultLayout extends Layout
     
       $(document).ready(function() {
         
-        $(window).resize(function() {
-            initMapHeight();
-        });
-        $(window).resize();
+        if ($('#map').length > 0) {
+          $(window).resize();
+          $(window).resize(function() {
+              initMapHeight();
+          });
+        }
         
         
         $('select').material_select();
