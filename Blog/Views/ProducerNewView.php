@@ -68,36 +68,43 @@ class ProducerNewView extends View
     <div class="step">
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Placeholder" id="slogan" type="text" name="slogan" class="validate">
-          <label for="slogan">Avez vous un slogan ou un phrase d'accroche ? (qui sera présent sur votre page de présentation de votre boutique)</label>
-        </div>
-      </div>
-    
-      <div class="row">
-        <div class="input-field col s12">
           <textarea  id="owner" name="owner" class="materialize-textarea"></textarea>
           <label for="owner">Nom(s) du ou des propriétaire(s): </label>
         </div>
       </div>
       
       <div class="row">
+      <div class="col s12">
+        <p class="caption">Rechercher sur la carte, l'adresse de votre boutique</p>
+        <div id="adress-map"></div>
+      </div>
+      </div>
+      
+      <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Placeholder" id="adress" type="text" name="adress" class="validate">
+          <input disabled placeholder="Placeholder" id="adress" type="text" name="adress" class="validate">
           <label for="adress">Adresse (de la boutique): </label>
         </div>
         
         <div class="input-field col s3">
-          <input placeholder="Placeholder" id="zipcode" type="text" name="zipcode" class="validate">
+          <input disabled placeholder="Placeholder" id="zipcode" type="text" name="zipcode" class="validate">
           <label for="zipcode">Code postal: </label>
         </div>
         
         <div class="input-field col s3">
-          <input placeholder="Placeholder" id="city" type="text" name="city" class="validate">
+          <input disabled placeholder="Placeholder" id="city" type="text" name="city" class="validate">
           <label for="city">Ville: </label>
         </div>
       </div>
       
-      <div id="adress-map" style="height: 300px"></div>
+      <input id="coordinates" type="hidden" name="coordinates">
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Placeholder" id="slogan" type="text" name="slogan" class="validate">
+          <label for="slogan">Avez vous un slogan ou un phrase d'accroche ? (qui sera présent sur votre page de présentation de votre boutique)</label>
+        </div>
+      </div>
       
     </div>
     
@@ -117,17 +124,6 @@ class ProducerNewView extends View
         <div class="input-field col s4">
           <input placeholder="Placeholder" id="website" type="text" name="website" class="validate">
           <label for="website">Site web: </label>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Placeholder" id="posLat" type="text" name="posLat" class="validate">
-          <label for="posLat">Position Latitude: </label>
-        </div>
-        <div class="input-field col s6">
-          <input placeholder="Placeholder" id="posLong" type="text" name="posLong" class="validate">
-          <label for="posLong">Position Longitudinal: </label>
         </div>
       </div>
       
