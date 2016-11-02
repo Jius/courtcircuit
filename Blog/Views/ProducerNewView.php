@@ -82,17 +82,17 @@ class ProducerNewView extends View
       
       <div class="row">
         <div class="input-field col s6">
-          <input disabled placeholder="Placeholder" id="adress" type="text" name="adress" class="validate">
+          <input placeholder="Placeholder" id="adress" type="text" name="adress" class="validate">
           <label for="adress">Adresse (de la boutique): </label>
         </div>
         
         <div class="input-field col s3">
-          <input disabled placeholder="Placeholder" id="zipcode" type="text" name="zipcode" class="validate">
+          <input placeholder="Placeholder" id="zipcode" type="text" name="zipcode" class="validate">
           <label for="zipcode">Code postal: </label>
         </div>
         
         <div class="input-field col s3">
-          <input disabled placeholder="Placeholder" id="city" type="text" name="city" class="validate">
+          <input placeholder="Placeholder" id="city" type="text" name="city" class="validate">
           <label for="city">Ville: </label>
         </div>
       </div>

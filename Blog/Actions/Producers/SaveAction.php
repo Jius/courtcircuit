@@ -20,22 +20,23 @@ class SaveAction extends Action
     $post = (array) $request->post;
     
     $this->producer = R::dispense('producer');
+    $tags = array();
     foreach (array_shift($post) as $key=>$value)
     {
       if ($key === 'tags' && $value !== '') {
        $datas = explode(';',$value);
-       $tags = array();
        foreach ($datas as $i=>$tag) {
         if (!empty($tag)) {
          array_push($tags, $tag);
         }
        }
-       R::addTags( $this->producer, $tags);
        
       } else {
        $this->producer->$key = $value;
       }
     }
+    
+    R::addTags( $this->producer, $tags);
     $id = R::store($this->producer);
     
    $this->redirect('/');
