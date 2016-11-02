@@ -310,6 +310,16 @@ class DefaultLayout extends Layout
           $('#hiddentags').val(tags);
          });
          
+         //Login btn on HOMEPAGE
+         $('.form-index').hide();
+         $('.login, .register').click(function() {
+          $(this).parent().hide();
+          if ($(this).hasClass('login')) {
+            $('.form-index.login').fadeIn();
+          } else if ($(this).hasClass('register')) {
+            $('.form-index.register').fadeIn();
+          }
+         });
          
          
          function onLocationFound(e) {
