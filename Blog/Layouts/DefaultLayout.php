@@ -312,13 +312,18 @@ class DefaultLayout extends Layout
          
          //Login btn on HOMEPAGE
          $('.form-index').hide();
-         $('.login, .register').click(function() {
+         $('a.login, a.register').click(function() {
           $(this).parent().hide();
           if ($(this).hasClass('login')) {
             $('.form-index.login').fadeIn();
           } else if ($(this).hasClass('register')) {
             $('.form-index.register').fadeIn();
           }
+         });
+         
+         $('.form-index a.return').click(function() {
+           $('.form-index').hide();
+           $('.btn-index').fadeIn();
          });
          
          

@@ -25,8 +25,8 @@ class IndexView extends View
       <div class="col s6 offset-s3">
         <div class="row">
           <div class="btn-index center-align">
-            <a class="waves-effect waves-light btn login">Se connecter</a>
-            <a class="waves-effect waves-light btn register">S'enregistrer</a>
+            <a class="waves-effect waves-light btn login orange darken-3">Se connecter</a>
+            <a class="waves-effect waves-light btn register blue">S'enregistrer</a>
           </div>
           <form class="col s12 form-index login">
             <div class="row">
@@ -42,8 +42,46 @@ class IndexView extends View
               </div>
             </div>
             <div class="row">
-              <div class="col s12 right-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Login
+              <div class="col s6 left-align">
+                <a class="waves-effect waves-light btn light-blue accent-3 return">Retour<i class="material-icons right">reply</i></a>
+              </div>
+              <div class="col s6 right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Se connecter
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </form>
+          
+          <form class="col s12 form-index register">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="firstname" name="firstname" type="text" class="validate">
+                <label for="firstname">Prénom</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="lastname" name="lastname" type="text" class="validate">
+                <label for="lastname">Nom</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" name="email" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s6 left-align">
+                <a class="waves-effect waves-light btn light-blue accent-3 return">Retour<i class="material-icons right">reply</i></a>
+              </div>
+              <div class="col s6 right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">S'enregistrer
                   <i class="material-icons right">send</i>
                 </button>
               </div>
