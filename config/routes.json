@@ -2,6 +2,12 @@
   "index": {
     "route": "/"
   },
+  "user::auth": {
+    "route": "/login"
+  },
+  "user::create": {
+    "route": "/user/create"
+  },
   "producer::new": {
     "route": "/producteur"
   },
@@ -13,8 +19,5 @@
    "params": {
      "id": ".+"
    }
-  },
-  "hello": {
-    "route": "/hello"
   }
 }

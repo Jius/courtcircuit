@@ -2,6 +2,7 @@
 namespace Blog\Views;
 
 use Tiimber\{View, Session};
+use RedBeanPHP\R;
 
 class IndexView extends View
 {
@@ -28,7 +29,7 @@ class IndexView extends View
             <a class="waves-effect waves-light btn login orange darken-3">Se connecter</a>
             <a class="waves-effect waves-light btn register blue">S'enregistrer</a>
           </div>
-          <form class="col s12 form-index login">
+          <form class="col s12 form-index login" action="login" method="post">
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate">
@@ -53,7 +54,7 @@ class IndexView extends View
             </div>
           </form>
           
-          <form class="col s12 form-index register">
+          <form class="col s12 form-index register" action="user/create" method="post">
             <div class="row">
               <div class="input-field col s6">
                 <input id="firstname" name="firstname" type="text" class="validate">
@@ -96,10 +97,8 @@ HTML;
 
   public function render()
   {
-    var_dump(Session::load()->has('user'));
     return [
       'user' => Session::load()->has('user')
     ];
   }
-
 }
