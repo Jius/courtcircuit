@@ -19,7 +19,7 @@ class AuthAction extends Action
     $post = (array) $request->post;
     $post = array_shift($post);
     
-    if ($post->email !== null || $post->email !== '') {
+    if ($post->email !== NULL || $post->email !== '') {
         $userExist  = R::findOne( 'user', ' email = ? ', [$post->email] );
         
         if ($userExist) {
