@@ -16,20 +16,23 @@ class IndexView extends View
 {{/user}}
 {{^user}}
   <div class="container">
-    <div class="row">
+  
+    <div class="row welcome">
       <div class="col s12 center-align">
         <h1>Bienvenue à vous sur Courtcircuit</h1>
         <p>Pour accéder à la map, je vous invite à vous connecter ou vous enregistrez :)</p>
+        <div class="center-align">
+          <a class="waves-effect waves-light btn-large login orange darken-3">Se connecter</a>
+          <a class="waves-effect waves-light btn-large register blue">S'enregistrer</a>
+        </div>
       </div>
     </div>
-    <div class="row">
+    
+    <div class="row form-container-index">
       <div class="col s6 offset-s3">
         <div class="row">
-          <div class="btn-index center-align">
-            <a class="waves-effect waves-light btn login orange darken-3">Se connecter</a>
-            <a class="waves-effect waves-light btn register blue">S'enregistrer</a>
-          </div>
           <form class="col s12 form-index login" action="login" method="post">
+            <p class="title big">Connectez vous à votre compte</p>
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate">

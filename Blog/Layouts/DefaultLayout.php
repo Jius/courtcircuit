@@ -21,6 +21,15 @@ class DefaultLayout extends Layout
       .no-bottom {
         margin-bottom: 0px !important;
       }
+      .welcome {
+        margin-top: 10%;
+      }
+      .welcome .login {
+        margin: 0 20px 0 0;
+      }
+      .form-container-index {
+        margin-top: 10%;
+      }
       .actions-nav {
         position: absolute;
         right: 0;
@@ -118,6 +127,17 @@ class DefaultLayout extends Layout
       }
       :-moz-placeholder { /* Firefox 18- */
         color: #767570 !important;
+      }
+      
+      .title {
+        font-size: 14px;
+      }
+      .title.medium {
+        font-size: 24px;
+      }
+      .title.big {
+        font-size: 34px;
+        margin: 0 0 20px;
       }
       
       /**Margin Top**/
@@ -313,7 +333,7 @@ class DefaultLayout extends Layout
          //Login btn on HOMEPAGE
          $('.form-index').hide();
          $('a.login, a.register').click(function() {
-          $(this).parent().hide();
+          $(this).parents('.welcome').hide();
           if ($(this).hasClass('login')) {
             $('.form-index.login').fadeIn();
           } else if ($(this).hasClass('register')) {
@@ -323,7 +343,7 @@ class DefaultLayout extends Layout
          
          $('.form-index a.return').click(function() {
            $('.form-index').hide();
-           $('.btn-index').fadeIn();
+           $('.welcome').fadeIn();
          });
          
          
