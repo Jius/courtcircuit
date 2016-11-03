@@ -181,9 +181,9 @@ class DefaultLayout extends Layout
         //MAP INIT
         
         //Primary Map, on Index (map)
-        
         if ($('#map').length > 0)
         {
+          initMapHeight();
           var map = L.map('map').fitWorld();
           
           L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
@@ -195,6 +195,12 @@ class DefaultLayout extends Layout
           
           map.on('locationfound', onLocationFound);
           map.on('locationerror', onLocationError);
+          
+          //AUTO RESIZE
+          $(window).resize();
+            $(window).resize(function() {
+                initMapHeight();
+            });
         }
         
         //Secondary map, in help when producer register.
@@ -224,14 +230,6 @@ class DefaultLayout extends Layout
           adressMap.on('locationfound', onLocationFound);
           adressMap.on('locationerror', onLocationError);
           
-        }
-        
-        
-        if ($('#map').length > 0) {
-          $(window).resize();
-          $(window).resize(function() {
-              initMapHeight();
-          });
         }
         
         
