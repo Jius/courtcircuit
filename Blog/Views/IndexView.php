@@ -18,15 +18,26 @@ class IndexView extends View
   <div class="container">
   
     <div class="row welcome">
-      <div class="col s12 center-align">
-        <h1>Bienvenue à vous sur Courtcircuit</h1>
-        <p>Pour accéder à la map, je vous invite à vous connecter ou vous enregistrez :)</p>
-        <div class="center-align">
-          <a class="waves-effect waves-light btn-large login orange darken-3">Se connecter</a>
-          <a class="waves-effect waves-light btn-large register blue">S'enregistrer</a>
+      <div class="row">
+        <div class="col s12 center-align">
+          <h1>Bienvenue à vous sur Courtcircuit</h1>
+          <p>Pour accéder à la map, je vous invite à vous connecter ou vous enregistrez :)</p>
+          <div class="center-align">
+            <a class="waves-effect waves-light btn-large login orange darken-3">Se connecter</a>
+            <a class="waves-effect waves-light btn-large register blue">S'enregistrer</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row producer">
+        <div class="col s12 center-align">
+          <div class="center-align">
+            <a class="waves-effect waves-light btn-large brown" href="/producteur">Je suis producteur</a>
+          </div>
         </div>
       </div>
     </div>
+    
     
     <div class="row form-container-index">
       <div class="col s6 offset-s3">

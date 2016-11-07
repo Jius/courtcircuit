@@ -27,6 +27,9 @@ class DefaultLayout extends Layout
       .welcome .login {
         margin: 0 20px 0 0;
       }
+      .welcome .producer {
+        margin-top: 5%;
+      }
       .form-container-index {
         margin-top: 10%;
       }
@@ -215,6 +218,9 @@ class DefaultLayout extends Layout
         
         
         //END MAP INIT
+        
+        
+        $('.tooltipped').tooltip({delay: 50});
         
         
         $(document).on ("click", "#submit-adress", function () {
