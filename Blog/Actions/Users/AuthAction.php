@@ -24,7 +24,7 @@ class AuthAction extends Action
         
         if ($userExist) {
             if ($userExist->password == $post->password) {
-                Session::load()->set('user', $userExist->id);
+                Session::load()->set('user', [$userExist->id, $userExist->email]);
                 $this->redirect('/');
             } else {
                 var_dump('Mot de passe incorrect');
