@@ -69,6 +69,7 @@ class IndexView extends View
           </form>
           
           <form class="col s12 form-index register" action="user/create" method="post">
+            <p class="title big">Créez votre compte utilisateur</p>
             <div class="row">
               <div class="input-field col s6">
                 <input id="firstname" name="firstname" type="text" class="validate">
