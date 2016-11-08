@@ -25,9 +25,6 @@ class AuthAction extends Action
 
   public function onPost($request, $args)
   {
-    var_dump('Passé dans le onPost');
-    var_dump($request->post);
-    
     $tmp = (array) $request->post;
     $post = array_shift($tmp);
     
@@ -45,13 +42,12 @@ class AuthAction extends Action
               Session::load()->set('user', $user);
               
           } else {
-            
-              var_dump('Mot de passe incorrect');
+              $this->info('Mot de passe erroné');
               
           }
         } else {
           
-          var_dump("Identifiants mail / mot de passe incorrect");
+          $this->info("Aucun utilisateur enregistré à cette adresse mail");
           
         }
       }
