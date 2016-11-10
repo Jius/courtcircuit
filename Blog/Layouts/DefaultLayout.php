@@ -39,10 +39,7 @@ class DefaultLayout extends Layout
         z-index: 2;
       }
       .search-container {
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        z-index: 1;
+        position: relative;
       }
       .search-input {
         -webkit-border-radius: 5px 5px 5px 5px !important;
@@ -50,10 +47,14 @@ class DefaultLayout extends Layout
         border: 1px solid #e0e0e0  !important;
         color: black;
         margin: 0 !important;
-        max-width: 400px;
+        font-size: 25px !important;
+        height: 4rem !important;
+        padding-left: 10px !important;
       }
       .search-btn{
-        display: inline;
+        position: absolute;
+        right: -70px;
+        top: 3px;
       }
       .my-location {
         margin: 0 0 0 30px;
@@ -146,6 +147,9 @@ class DefaultLayout extends Layout
       /**Margin Top**/
       .m-t-med {
         margin-top: 20px !important;
+      }
+      .m-t-big {
+        margin-top: 40px !important;
       }
     </style>
   </head>

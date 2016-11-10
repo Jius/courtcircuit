@@ -11,13 +11,14 @@ class NavigationView extends View
 
     const TPL = <<<HTML
     <nav id="navigation">
-      <div class="nav-wrapper light-blue accent-2">
+      <div class="nav-wrapper brown darken-1">
         <a href="/" class="brand-logo">CourtCircuit</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="actions-nav hide-on-med-and-down">
           {{#user}}
-            <li><a href="/user/{{id}}" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{email}}"><i class="material-icons left">account_circle</i>Mon compte</a></li>
+            <li><a href="/user/{{id}}" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{email}}"><i class="material-icons left">home</i>Mon compte</a></li>
           {{/user}}
+            <li><a href="/producteur"><i class="material-icons left">account_circle</i>Espace Producteur</a></li>
         </ul>
         {{#user}}
           <form class="search-container">
