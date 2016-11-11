@@ -18,6 +18,42 @@ class DefaultLayout extends Layout
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.css">
     
     <style>
+      .header {
+        background: #fcfcfc;
+        height: 100px;
+        -webkit-box-shadow: 0 0 10px 1px #4F4F4F;
+        box-shadow: 0 0 10px 1px #4F4F4F;
+      }
+      .logo {
+        font-size: 35px;
+        height: 100px;
+        line-height: 75px;
+        margin: 0;
+        padding: 0;
+      }
+      .logo .reduce {
+        font-size: 25px;
+      }
+      .nav {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .nav .tab {
+        display: inline-block;
+        height: 50px;
+        line-height: 45px;
+        text-align: center;
+        width: 100%;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+      }
+      .nav .tab i {
+        position: relative;
+        right: 5px;
+        top: 5px;
+      }
+      
       .no-bottom {
         margin-bottom: 0px !important;
       }
@@ -358,7 +394,7 @@ class DefaultLayout extends Layout
           var height = Math.max( body.scrollHeight, body.offsetHeight, 
                                  html.clientHeight, html.scrollHeight, html.offsetHeight );
                                  
-          var heightMap = height - $('#navigation').height();
+          var heightMap = height - $('.header').height();
           $('#map').css('height', heightMap + 'px');
         }
         
