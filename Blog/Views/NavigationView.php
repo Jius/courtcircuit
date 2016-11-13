@@ -21,7 +21,7 @@ class NavigationView extends View
           <div class="col s3 offset-s1">
             <ul class="nav right">
               <li>
-                <a href="/user/login" class="tab"><i class="material-icons">home</i>Mon Compte</a>
+                <a href="/user/login" class="tab"><i class="material-icons">home</i>Se connecter / S'inscrire</a>
               </li>
               <li>
                 <a href="/pro/login" class="tab"><i class="material-icons">work</i>Espace Producteur</a>

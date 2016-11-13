@@ -156,6 +156,13 @@ class DefaultLayout extends Layout
         position: absolute;
       }
       
+      .form-login {
+        margin: 8% 0;
+      }
+      .btn.register {
+        margin: 5px 0 0 5%;
+      }
+      
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: #767570 !important;
       }
