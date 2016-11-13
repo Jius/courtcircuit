@@ -2,18 +2,21 @@
 namespace Blog\Actions\Users;
 
 use Tiimber\{Action, Session, Traits\RedirectTrait};
-use Tiimber\Loggers\SysLogger as Logger;
 use RedBeanPHP\R;
 
-class AuthAction extends Action
+class LoginAction extends Action
 {
   use RedirectTrait;
 
   const EVENTS = [
-    'request::user::auth'
+    'request::user::login'
   ];
   
-  private function prepareUser($datas) {
+  /*
+  * prepareUserSession()
+  * Rec in session all infos about user without the password and action field.
+  */
+  private function prepareUserSession($datas) {
     $user = [];
     foreach ($datas as $key=>$value) {
       if ($key !== 'password' && $key !== 'action') {
@@ -25,21 +28,22 @@ class AuthAction extends Action
 
   public function onPost($request, $args)
   {
-    $tmp = (array) $request->post;
-    $post = array_shift($tmp);
+    $post = $request->post;
+    $table = $post->get('role');
     
     if (!empty((array) $post)) {
       
-      if ($post->email !== NULL && $post->email !== '') {
+      if ($post->get('email') !== NULL && $post->get('email') !== '') {
         
-        $userExist  = R::findOne( 'user', ' email = ? ', [$post->email] );
+        $user  = R::findOne( $table , ' email = ? ', [$post->get('email')] );
         
-        if ($userExist) {
+        if ($user) {
           
-          if ($userExist->password == $post->password) {
+          if ($user->password == $post->get('password')) {
             
-              $user = $this->prepareUser($userExist);
-              Session::load()->set('user', $user);
+              $userSession = $this->prepareUserSession($user);
+              Session::load()->set('user', $userSession);
+              $this->redirect('/');
               
           } else {
               $this->info('Mot de passe erroné');
@@ -52,6 +56,5 @@ class AuthAction extends Action
         }
       }
     }
-    $this->redirect('/');
   }
 }

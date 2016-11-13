@@ -10,7 +10,7 @@ class UserLoginFormView extends View
   ];
 
     const TPL = <<<HTML
-    <form class="form-login" action="login" method="post">
+    <form class="form-login" action="/user/login" method="post">
         <input type="hidden" name="role" value="user">
         <p class="title big">Connectez vous à votre compte</p>
         <div class="row">

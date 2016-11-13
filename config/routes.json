@@ -3,6 +3,9 @@
     "route": "/"
   },
   "user::auth": {
+    "route": "/authentification"
+  },
+  "user::login": {
     "route": "/user/login"
   },
   "user::create": {
