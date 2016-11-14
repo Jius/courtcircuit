@@ -11,7 +11,7 @@ class LoginFormView extends View
   ];
 
     const TPL = <<<HTML
-    <form class="form-login" action="/login" method="post">
+    <form class="form-container" action="/login" method="post">
         <input type="hidden" name="role" value="{{role}}">
         <p class="title big">Connectez vous à votre compte</p>
         <div class="row">
@@ -38,7 +38,7 @@ class LoginFormView extends View
     <div class="row">
       <div class="col s12">
         <p class="title big left">Pas encore inscrit ?</p>
-        <a class="waves-effect waves-light btn register left light-blue">Je m'inscris</a>
+        <a class="waves-effect waves-light btn register left light-blue" href="/{{role_t}}/nouveau">Je m'inscris</a>
       </div>
     </div>
     
@@ -74,6 +74,9 @@ HTML;
     
     public function render()
     {
-      return ['role' => $this->role];
+      
+      $role_t = ($this->role == 'user') ? 'utilisateur' : 'producteur';
+      return  [ 'role' => $this->role,
+                'role_t' => $role_t ];
     }
 }

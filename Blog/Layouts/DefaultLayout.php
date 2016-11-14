@@ -156,7 +156,7 @@ class DefaultLayout extends Layout
         position: absolute;
       }
       
-      .form-login {
+      .form-container {
         margin: 8% 0;
       }
       .btn.register {
