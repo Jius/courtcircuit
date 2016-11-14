@@ -16,13 +16,13 @@ class LoginFormView extends View
         <p class="title big">Connectez vous à votre compte</p>
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" name="email" type="email" class="validate">
+            <input id="email" name="email" type="email" class="validate" required>
             <label for="email">Email</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" name="password" type="password" class="validate">
+            <input id="password" name="password" type="password" class="validate" required>
             <label for="password">Password</label>
           </div>
         </div>
