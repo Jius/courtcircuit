@@ -24,7 +24,7 @@ class NavigationView extends View
                 <a href="/authentification" class="tab"><i class="material-icons">home</i>Se connecter / S'inscrire</a>
               </li>
               <li>
-                <a href="/pro/login" class="tab"><i class="material-icons">work</i>Espace Producteur</a>
+                <a href="/espace-producteur" class="tab"><i class="material-icons">work</i>Espace Producteur</a>
               </li>
             </ul>
           </div>
