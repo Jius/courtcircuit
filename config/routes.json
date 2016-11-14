@@ -8,6 +8,9 @@
   "user::auth": {
     "route": "/authentification"
   },
+  "user::new": {
+    "route": "/utilisateur/nouveau"
+  },
   "user::create": {
     "route": "/user/create"
   },
@@ -15,7 +18,7 @@
     "route": "/espace-producteur"
   },
   "producer::new": {
-    "route": "/producteur"
+    "route": "/producteur/nouveau"
   },
   "producer::create": {
     "route": "/pro/create"
