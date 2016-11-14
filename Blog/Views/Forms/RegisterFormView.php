@@ -11,11 +11,7 @@ class RegisterFormView extends View
   ];
 
     const TPL = <<<HTML
-    <form class="form-container" action="/create" method="post">
-        <input type="hidden" name="role" value="{{role}}">
-        <input type="hidden" name="approved" value="false">
-        <input type="hidden" name="created" value="{{date}}">
-        
+    <form class="form-container" action="/register" method="post">
         <p class="title big">Création de votre compte <b>{{role_t}}</b></p>
         <div class="row">
           <div class="input-field col s6">
@@ -50,6 +46,11 @@ class RegisterFormView extends View
             </button>
           </div>
         </div>
+        
+        <input type="hidden" name="role" value="{{role}}">
+        <input type="hidden" name="approved_pro" value="false">
+        <input type="hidden" name="email_validate" value="false">
+        <input type="hidden" name="created" value="{{date}}">
     </form>
 HTML;
 

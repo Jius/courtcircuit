@@ -5,6 +5,10 @@
   "action::login": {
     "route": "/login"
   },
+  "action::register": {
+    "route": "/register"
+  },
+  
   "user::auth": {
     "route": "/authentification"
   },
@@ -19,9 +23,6 @@
   },
   "producer::new": {
     "route": "/producteur/nouveau"
-  },
-  "producer::create": {
-    "route": "/pro/create"
   },
   "producer::show": {
    "route": "/producteur/{id}",
