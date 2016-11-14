@@ -1,5 +1,5 @@
 <?php
-namespace Blog\Actions\Users;
+namespace Blog\Actions;
 
 use Tiimber\{Action, Session, Traits\RedirectTrait};
 use RedBeanPHP\R;
@@ -9,7 +9,7 @@ class LoginAction extends Action
   use RedirectTrait;
 
   const EVENTS = [
-    'request::user::login'
+    'request::action::login'
   ];
   
   /*
@@ -30,8 +30,8 @@ class LoginAction extends Action
   {
     $post = $request->post;
     $table = $post->get('role');
-    
-    if (!empty((array) $post)) {
+
+    if (!empty((array) $post) && $table !== '') {
       
       if ($post->get('email') !== NULL && $post->get('email') !== '') {
         

@@ -2,11 +2,11 @@
   "index": {
     "route": "/"
   },
+  "action::login": {
+    "route": "/login"
+  },
   "user::auth": {
     "route": "/authentification"
-  },
-  "user::login": {
-    "route": "/user/login"
   },
   "user::create": {
     "route": "/user/create"

@@ -3,15 +3,16 @@ namespace Blog\Views\Forms;
 
 use Tiimber\{View, Session};
 
-class UserLoginFormView extends View
+class LoginFormView extends View
 {
   const EVENTS = [
-    'request::user::auth' => 'userLogin'
+    'request::user::auth' => 'formLogin',
+    'request::producer::auth' => 'formLogin'
   ];
 
     const TPL = <<<HTML
-    <form class="form-login" action="/user/login" method="post">
-        <input type="hidden" name="role" value="user">
+    <form class="form-login" action="/login" method="post">
+        <input type="hidden" name="role" value="{{role}}">
         <p class="title big">Connectez vous à votre compte</p>
         <div class="row">
           <div class="input-field col s12">
@@ -66,4 +67,13 @@ class UserLoginFormView extends View
     </div>    
     
 HTML;
+
+    function onGet($request, $args) {
+      $this->role = strstr($args["_route"], '::', true);
+    }
+    
+    public function render()
+    {
+      return ['role' => $this->role];
+    }
 }

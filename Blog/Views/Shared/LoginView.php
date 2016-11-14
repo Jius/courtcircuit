@@ -1,17 +1,18 @@
 <?php
-namespace Blog\Views\Users;
+namespace Blog\Views\Shared;
 
 use Tiimber\{View, Session};
 
 class LoginView extends View
 {
   const EVENTS = [
-    'request::user::auth' => 'content'
+    'request::user::auth' => 'content',
+    'request::producer::auth' => 'content'
   ];
 
     const TPL = <<<HTML
     <div class="container">
-        {{{userLogin}}}
+        {{{formLogin}}}
     </div>
 HTML;
 }
