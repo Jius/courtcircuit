@@ -42,7 +42,6 @@ class NavigationView extends View
 HTML;
 
     public function render() {
-        var_dump(Session::load()->get('user'));
         return [
           'user' => Session::load()->get('user')
         ];
