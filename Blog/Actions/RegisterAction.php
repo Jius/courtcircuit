@@ -21,10 +21,20 @@ class RegisterAction extends Action
       if ($post->get('email') !== '') {
         
         $registration = $this->preparePost($post);
-        
         $id = R::store($registration);
         
-        $this->redirect('/espace-producteur');
+        if (!empty($id)) {
+          
+          $userSession = $this->prepareUserSession($registration);
+          Session::load()->set('user', $userSession);
+          
+          $this->redirect('/espace-producteur');
+          
+        } else {
+          
+          $this->info("Une erreur s'est produite lors de l'enregistrement dans la base de données");
+          
+        }
       }
       
     }
@@ -49,5 +59,30 @@ class RegisterAction extends Action
     
     return $r;
   }
+  
+  
+  /*
+  * prepareUserSession()
+  * Rec in session all infos about user without the password and action field.
+  */
+  
+  private function prepareUserSession($datas) {
+    
+    $user = [];
+    
+    foreach ($datas as $key=>$value) {
+      
+      if ($key !== 'password' && $key !== 'action') {
+        
+        $user[$key] = $value;
+        
+      }
+      
+    }
+    
+    return $user;
+    
+  }
+
 
 }
