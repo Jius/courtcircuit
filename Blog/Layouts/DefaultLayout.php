@@ -48,6 +48,7 @@ class DefaultLayout extends Layout
         display: inline-block;
         line-height: 45px;
         text-align: center;
+        max-width: 250px;
         width: 100%;
         -webkit-border-radius: 0 0 20px 20px;
         border-radius: 0 0 20px 20px;
@@ -56,6 +57,10 @@ class DefaultLayout extends Layout
         position: relative;
         right: 5px;
         top: 5px;
+      }
+      .propal {
+        margin: 10px 0 0 0;
+        
       }
       
       .logout {

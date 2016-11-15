@@ -2,6 +2,10 @@
   "index": {
     "route": "/"
   },
+  "propal": {
+    "route": "/proposition"
+  },
+  
   "action::login": {
     "route": "/login"
   },
