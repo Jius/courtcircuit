@@ -21,9 +21,6 @@ class NavigationView extends View
           <div class="col s3 offset-s1">
             <ul class="nav right">
               <li>
-                <a href="/authentification" class="tab"><i class="material-icons">home</i>Se connecter / S'inscrire</a>
-              </li>
-              <li>
                 <a href="/espace-producteur" class="tab"><i class="material-icons">work</i>Espace Producteur</a>
               </li>
             </ul>
