@@ -1,9 +1,9 @@
 <?php
-namespace Blog\Views;
+namespace Blog\Views\Navigations;
 
 use Tiimber\{View, Session};
 
-class NavigationView extends View
+class DefaultView extends View
 {
   const EVENTS = [
     'request::*' => 'navigation'
@@ -15,13 +15,22 @@ class NavigationView extends View
         <div class="row hide-on-med-and-down">
           <div class="col s8">
             <h1 class="logo">
-              <a href="/">Courtcircuit, <span class="reduce">découvrez les produits locaux.</span></a>
+              <a href="/">Courtcircuit</a>
             </h1>
           </div>
+          
           <div class="col s3 offset-s1">
             <ul class="nav right">
               <li>
-                <a href="/espace-producteur" class="tab"><i class="material-icons">work</i>Espace Producteur</a>
+                {{#user?}}
+                  <a href="/pro/tableau-de-bord" class="tab black-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Aller au tableau de bord"><i class="material-icons">work</i>{{email}}</a>
+                  <a class="btn-floating btn waves-effect waves-light red logout"><i class="material-icons">clear</i></a>
+        
+                {{/user?}}
+                
+                {{^user?}}
+                  <a href="/espace-producteur" class="tab black-text"><i class="material-icons">work</i>Espace Producteur</a>
+                {{/user?}}
               </li>
             </ul>
           </div>
@@ -40,7 +49,7 @@ HTML;
 
     public function render() {
         return [
-          'user' => Session::load()->get('user')
+          'user?' => Session::load()->get('user')
         ];
         
     }

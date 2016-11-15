@@ -39,19 +39,37 @@ class DefaultLayout extends Layout
         padding: 0;
         width: 100%;
       }
-      .nav .tab {
-        display: inline-block;
+      .nav li {
+        position: relative;
         height: 50px;
+      }
+      .nav .tab {
+        background: rgba(0, 0, 0, 0.05);
+        display: inline-block;
         line-height: 45px;
         text-align: center;
         width: 100%;
-        -webkit-border-radius: 5px 5px 5px 5px;
-        border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 0 0 20px 20px;
+        border-radius: 0 0 20px 20px;
       }
       .nav .tab i {
         position: relative;
         right: 5px;
         top: 5px;
+      }
+      
+      .logout {
+        bottom: 18px;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        right: 0;
+        width: 20px;
+        z-index: 1;
+      }
+      .logout i {
+        font-size: 1rem;
+        line-height: 20px;
       }
       
       .no-bottom {
@@ -196,6 +214,10 @@ class DefaultLayout extends Layout
       }
       .title.big {
         font-size: 34px;
+      }
+      
+      .no-margin {
+        margin: 0;
       }
       
       /**Margin Top**/

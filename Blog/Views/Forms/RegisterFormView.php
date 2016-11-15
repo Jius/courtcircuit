@@ -15,12 +15,12 @@ class RegisterFormView extends View
         <p class="title big">Création de votre compte <b>{{role_t}}</b></p>
         <div class="row">
           <div class="input-field col s6">
-            <input id="ln" name="lastname" type="text" class="validate" required>
-            <label for="ln">Nom</label>
-          </div>
-          <div class="input-field col s6">
             <input id="fn" name="firstname" type="text" class="validate" required>
             <label for="fn">Prénom</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="ln" name="lastname" type="text" class="validate" required>
+            <label for="ln">Nom</label>
           </div>
         </div>
         <div class="row">
