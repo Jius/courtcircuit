@@ -163,6 +163,18 @@ class DefaultLayout extends Layout
         margin: 5px 0 0 5%;
       }
       
+      
+      .head-dash {
+        margin: 0 0 8% 0;
+      }
+      .shop-container {
+        margin-bottom: 20px;
+      }
+      .dash-lab {
+        display: inline;
+        margin: 0 15px 0 0;
+      }
+      
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: #767570 !important;
       }
@@ -184,7 +196,6 @@ class DefaultLayout extends Layout
       }
       .title.big {
         font-size: 34px;
-        margin: 0 0 20px;
       }
       
       /**Margin Top**/

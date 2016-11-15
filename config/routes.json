@@ -18,16 +18,14 @@
   "user::create": {
     "route": "/user/create"
   },
+  
   "producer::auth": {
     "route": "/espace-producteur"
   },
   "producer::new": {
     "route": "/producteur/nouveau"
   },
-  "producer::show": {
-   "route": "/producteur/{id}",
-   "params": {
-     "id": ".+"
-   }
+  "producer::dashboard": {
+   "route": "/pro/tableau-de-bord"
   }
 }

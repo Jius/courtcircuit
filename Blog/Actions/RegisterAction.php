@@ -28,7 +28,7 @@ class RegisterAction extends Action
           $userSession = $this->prepareUserSession($registration);
           Session::load()->set('user', $userSession);
           
-          $this->redirect('/espace-producteur');
+          $this->redirect('/pro/tableau-de-bord');
           
         } else {
           
