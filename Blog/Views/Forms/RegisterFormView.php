@@ -48,7 +48,9 @@ class RegisterFormView extends View
         </div>
         
         <input type="hidden" name="role" value="{{role}}">
-        <input type="hidden" name="approved_pro" value="false">
+        {{#pro?}}
+          <input type="hidden" name="approved_pro" value="false">
+        {{/pro?}}
         <input type="hidden" name="email_validate" value="false">
         <input type="hidden" name="created" value="{{date}}">
     </form>
@@ -62,8 +64,11 @@ HTML;
     {
       
       $role_t = ($this->role == 'user') ? 'utilisateur' : 'producteur';
+      $pro = ($this->role == 'producer') ? true : false;
       return  [ 'role' => $this->role,
                 'role_t' => $role_t,
-                'date' => date('d/m/Y') ];
+                'date' => date('d/m/Y'),
+                'pro?' => $pro        
+              ];
     }
 }
