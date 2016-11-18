@@ -11,8 +11,6 @@ class RegisterView extends View
   ];
 
     const TPL = <<<HTML
-    <div class="container">
-        {{{formRegister}}}
-    </div>
+    {{{formRegister}}}
 HTML;
 }

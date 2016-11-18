@@ -11,8 +11,6 @@ class LoginView extends View
   ];
 
     const TPL = <<<HTML
-    <div class="container">
-        {{{formLogin}}}
-    </div>
+    {{{formLogin}}}
 HTML;
 }
