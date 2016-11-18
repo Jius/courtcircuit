@@ -31,5 +31,8 @@
   },
   "producer::dashboard": {
    "route": "/pro/tableau-de-bord"
+  },
+  "producer::shop::new": {
+   "route": "/pro/boutique"
   }
 }

@@ -137,6 +137,23 @@ class DefaultLayout extends Layout
         color: #9e9e9e;
         font-size: 1rem;
       }
+      .step {
+        margin: 30px 0 0;
+      }
+      .step-btn-container {
+        margin: 65px 0 0 0;
+      }
+      
+      .adress-container {
+        position: relative;
+      }
+      
+      .indicator-adress {
+        left: -280px;
+        max-width: 250px;
+        position: absolute;
+        top: 50px;
+      }
       
       #map {
         height:180px;
@@ -232,6 +249,39 @@ class DefaultLayout extends Layout
       .m-t-big {
         margin-top: 40px !important;
       }
+      
+      .input-error {
+        display: inline-block;
+        padding: 10px;
+      	position: absolute;
+      	background: #ffffff;
+      	border: 1px solid #d1d1d1;
+      	bottom: -45px;
+      	left: 0;
+      }
+      .input-error:after, .input-error:before {
+      	bottom: 100%;
+      	left: 20%;
+      	border: solid transparent;
+      	content: " ";
+      	height: 0;
+      	width: 0;
+      	position: absolute;
+      	pointer-events: none;
+      }
+      
+      .input-error:after {
+      	border-color: rgba(255, 255, 255, 0);
+      	border-bottom-color: #ffffff;
+      	border-width: 15px;
+      	margin-left: -15px;
+      }
+      .input-error:before {
+        border-color: rgba(209, 209, 209, 0);
+	      border-bottom-color: #d1d1d1;
+      	border-width: 16px;
+      	margin-left: -16px;
+      }
     </style>
   </head>
   <body class="blue-grey lighten-5">
@@ -322,47 +372,75 @@ class DefaultLayout extends Layout
         
         
         //Init step form producer
-        $('.step-prev').fadeOut();
+        $('.step-prev').hide();
         
-        var cpt=1, steps = $('.step').length;
+        var cpt=1, 
+            steps = $('.step').length;
+            
         $('.step-indicator .active').html(cpt);
         $('.step-indicator .total').html(steps);
         
         $('.step').each(function() {
+        
           $(this).attr('data-step', cpt);
+          
           if (cpt>1) {
             $(this).fadeOut();
           }
+          
+          if (cpt == steps) {
+            var stepTitle = $('.step[data-step=1]').attr('data-title');
+            $('.step-title').html("<b>"+stepTitle+"</b>");
+          }
+          
           cpt++;
+          
         });
+        
         if (steps>1) {
           $('.step-next').attr('link-step', 2);
         }
         
+        
         //END INIT
          
          $('.step-next').click(function() {
-          var target=parseInt($(this).attr('link-step'), 10);
-          $('.step-indicator .active').html(target);
-          if (target - 1 > 0) {
-            $('.step-prev').fadeIn();
+         
+          var target = parseInt($(this).attr('link-step'), 10),
+              step = target - 1;
+              
+          stepTitle = $('.step[data-step='+(target)+']').attr('data-title');
+          
+          if (validateStep(step)) {
+            
+            $('.step-indicator .active').html(target);
+            $('.step-title').html("<b>"+stepTitle+"</b>");
+            
+            if (target - 1 > 0) {
+              $('.step-prev').fadeIn();
+            }
+            
+            $('.step-prev').attr('link-step', target-1);
+            $('.step[data-step='+(target - 1)+']').hide();
+            $('.step[data-step='+(target)+']').fadeIn();
+            
+            
+            if (target + 1 <= steps) {
+              $(this).attr('link-step', target+1);
+            } else {
+              $(this).hide();
+            }
+            
           }
           
-          $('.step-prev').attr('link-step', target-1);
-          $('.step[data-step='+(target - 1)+']').hide();
-          $('.step[data-step='+(target)+']').fadeIn();
-          
-          
-          if (target + 1 <= steps) {
-            $(this).attr('link-step', target+1);
-          } else {
-            $(this).hide();
-          }
          });
          
          $('.step-prev').click(function() {
-          var target=parseInt($(this).attr('link-step'), 10);
+          var target=parseInt($(this).attr('link-step'), 10),
+              stepTitle = $('.step[data-step='+(target)+']').attr('data-title');
+          
           $('.step-indicator .active').html(target);
+          $('.step-title').html("<b>"+stepTitle+"</b>");
           
           if (target - 1 <= 0) {
             $(this).hide();
@@ -419,6 +497,68 @@ class DefaultLayout extends Layout
          });
          
          
+         
+         /*
+         * CUSTOM FUNCTION 
+         *
+         */
+         
+          function validateStep(target) {
+            var valide = false;
+            $('.step[data-step='+(target)+']').find('input').each(function(e) {
+            
+            if ($(this).prop('required')) {
+            
+              if ($(this).val() !== '') {
+              
+                if ($(this).attr('name') == 'siret') {
+                
+                  if (EstSiretValide($(this).val())) {
+                    
+                    valide = true;
+                    return false;
+                    
+                  } else {
+                    $(this).removeClass('valid');
+                    $(this).addClass('invalid');
+                    
+                    $(this).after("<div class='input-error'>Le SIRET n'est pas correct, veuillez le vérifier.</div>");
+                    $('.input-error').delay(3000).hide(0);
+                    
+                    $(this).next('label').addClass('active');
+                    
+                    return false;
+                  }
+                  
+                } else {
+                  
+                  $(this).removeClass('invalid');
+                  $(this).addClass('valid');
+                  
+                  valide = true;
+                  return false;
+                  
+                }
+              } else {
+              
+                $(this).removeClass('valid');
+                $(this).addClass('invalid');
+                
+                $(this).after("<div class='input-error'>Veuillez renseigner ce champs</div>");
+                $('.input-error').delay(3000).hide(0);
+                
+                $(this).next('label').addClass('active');
+                
+                return false;
+            
+              }
+            }
+            
+           });
+           
+           return valide;
+          }
+         
          function onLocationFound(e) {
             var radius = e.accuracy / 2;
         
@@ -449,6 +589,43 @@ class DefaultLayout extends Layout
         function onSelect(e) {
           //Create btn submit if don't exist
           $('<a class="waves-effect waves-light btn" id="submit-adress" coordinates="'+e.feature.geometry.coordinates+'" adress="'+e.feature.properties.name+'" zipcode="'+e.feature.properties.postalcode+'" city="'+e.feature.properties.locality+'">Valider</a>').insertAfter('.leaflet-popup-content');
+        }
+        
+        /**
+         * @name EstSiretValide
+         *
+         * @param   Le code SIRET dont on veut vérifier la validité.
+         *
+         * @return   Un booléen qui vaut 'true' si le code SIRET passé en
+         *                           paramètre est valide, false sinon.
+         */
+        function EstSiretValide(siret) {
+          var estValide;
+          if ( (siret.length != 14) || (isNaN(siret)) )
+            estValide = false;
+          else {
+             // Donc le SIRET est un numérique à 14 chiffres
+             // Les 9 premiers chiffres sont ceux du SIREN (ou RCS), les 4 suivants
+             // correspondent au numéro d'établissement
+             // et enfin le dernier chiffre est une clef de LUHN. 
+            var somme = 0;
+            var tmp;
+            for (var cpt = 0; cpt<siret.length; cpt++) {
+              if ((cpt % 2) == 0) { // Les positions impaires : 1er, 3è, 5è, etc... 
+                tmp = siret.charAt(cpt) * 2; // On le multiplie par 2
+                if (tmp > 9) 
+                  tmp -= 9;	// Si le résultat est supérieur à 9, on lui soustrait 9
+              }
+             else
+               tmp = siret.charAt(cpt);
+               somme += parseInt(tmp);
+            }
+            if ((somme % 10) == 0)
+              estValide = true; // Si la somme est un multiple de 10 alors le SIRET est valide 
+            else
+              estValide = false;
+          }
+          return estValide;
         }
       });
     </script>
