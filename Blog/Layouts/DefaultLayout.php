@@ -199,8 +199,14 @@ class DefaultLayout extends Layout
       .form-container {
         margin: 8% 0;
       }
+      .register-pro p {
+        margin: 0;
+      }
       .btn.register {
         margin: 5px 0 0 5%;
+      }
+      .btn.big {
+        width: 100%;
       }
       
       
