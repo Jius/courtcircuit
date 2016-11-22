@@ -209,6 +209,9 @@ class DefaultLayout extends Layout
         width: 100%;
       }
       
+      label span.required {
+        color: red;
+      }
       
       .head-dash {
         margin: 0 0 8% 0;
@@ -219,6 +222,40 @@ class DefaultLayout extends Layout
       .dash-lab {
         display: inline;
         margin: 0 15px 0 0;
+      }
+      
+      .daytable {
+        padding: 5px 0;
+        text-align: center;
+      }
+      .daytable li {
+        display: inline-block;
+        margin: 0 0 5px 0;
+        width: 70px;
+        height: 50px;
+        line-height: 50px;
+        background: white;
+        border: 1px #bdbdbd solid;
+        -webkit-transition: all 400ms ease;
+        -moz-transition: all 400ms ease;
+        -ms-transition: all 400ms ease;
+        -o-transition: all 400ms ease;
+        transition: all 400ms ease;
+      }
+      .daytable li:hover {
+        cursor: pointer;
+        font-weight: bold;
+        -webkit-transition: all 400ms ease;
+        -moz-transition: all 400ms ease;
+        -ms-transition: all 400ms ease;
+        -o-transition: all 400ms ease;
+        transition: all 400ms ease;
+      }
+      .daytable li.selected {
+        border: none;
+        font-weight: bold;
+        -webkit-box-shadow: 0 0 5px 1px #4caf50;
+        box-shadow: 0 0 5px 1px #4caf50;
       }
       
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -291,48 +328,31 @@ class DefaultLayout extends Layout
     </style>
   </head>
   <body class="blue-grey lighten-5">
+  
     {{{navigation}}}
     
     <div class="container">
       {{{content}}}
     </div>
     
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.js"></script>
     
     <script>
       
       $(document).ready(function() {
-        //MAP INIT
         
-        //Primary Map, on Index (map)
-        if ($('#map').length > 0)
-        {
-          initMapHeight();
-          var map = L.map('map').fitWorld();
-          
-          L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
-              attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-              maxZoom: 18
-          }).addTo(map);
-          
-          map.locate({setView: true, maxZoom: 14});
-          
-          map.on('locationfound', onLocationFound);
-          map.on('locationerror', onLocationError);
-          
-          //AUTO RESIZE
-          $(window).resize();
-            $(window).resize(function() {
-                initMapHeight();
-            });
-        }
+        /*
+        * MAP LEAFLET + MAPZEN INIT
+        *
+        */
         
-        //Secondary map, in help when producer register.
         if ($('#adress-map').length > 0) 
         {
+        
           var adressMap = L.map('adress-map').fitWorld();
           
           L.tileLayer('https://api.mapbox.com/styles/v1/jius/ciuqvha7f00q22hpbyev81n7n/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiaml1cyIsImEiOiJjaXVxdjh5OWswMDJtMnhuMGZzZjRvZnRkIn0.iXdjtUptlh_daJ8CdpqvVw', {
@@ -344,13 +364,16 @@ class DefaultLayout extends Layout
           
             var options = {
               position: 'topright',
-              placeholder: 'Adresse de votre boutique',
-              title: 'Rechercher',
+              placeholder: 'Adresse de votre boutique *',
+              title: 'search-map',
               expanded: true
               },
                 geocoder = L.control.geocoder('mapzen-aX1TAnZ', options);
           
           geocoder.addTo(adressMap);
+          
+          //Add required attr to input search
+          $('input[title="search-map"]').prop('required', true);
           
           geocoder.on('select', onSelect);
           
@@ -359,12 +382,11 @@ class DefaultLayout extends Layout
           
         }
         
-        
         //END MAP INIT
         
         
-        $('.tooltipped').tooltip({delay: 50});
         
+        $('.tooltipped').tooltip({delay: 50});
         
         $(document).on ("click", "#submit-adress", function () {
           $('#adress').attr('value', $(this).attr('adress'));
@@ -505,33 +527,102 @@ class DefaultLayout extends Layout
          
          
          /*
+         * DATETABLE JS
+         *
+         */
+          
+          var   memoryInput = $('input[name="daytable"]').val();
+                
+          $('.daytable').children('li').each(function() {
+            var day = $(this).text().toLowerCase();
+            
+            if (memoryInput.includes(day)) {
+              $(this).toggleClass('selected');
+            }
+          });
+         
+         
+         $('.daytable').children('li').click(function() {
+         
+          var day = $(this).text().toLowerCase();
+          
+          $('input[name="daytable"]').val(function(i,val) { 
+          
+            if (!val.includes(day)) {
+              val = (val.length == 0 ? day : val + ',' + day);
+            } else {
+              
+              if (val.includes(',')) {
+              
+                val = (val.indexOf(day) == 0 ? val.replace(day + ',' , '') : val.replace(',' + day , ''));
+                
+              } else {
+              
+                val = val.replace(day , '');
+                
+              }
+              
+            }
+            
+            return val;
+           
+          });
+          
+          $(this).toggleClass('selected');
+          
+         });
+         
+         
+         /*
+         * TIMETABLE JS
+         *
+         */
+          
+          var allDay = $('input[name="all-day"]').prop('checked');
+          
+          if (allDay) {
+            $('.clocktable.all').show();
+            $('.clocktable.split').hide();
+          } else {
+            $('.clocktable.all').hide();
+            $('.clocktable.split').show();
+          }
+          
+          $('input[name="all-day"]').click(function() {
+            $('.clocktable.all').toggle();
+            $('.clocktable.split').toggle();
+          });
+         
+         
+         
+         /*
          * CUSTOM FUNCTION 
          *
          */
          
           function validateStep(target) {
-            var valide = false;
-            $('.step[data-step='+(target)+']').find('input').each(function(e) {
+            var valide = false,
+                pos_error = 0,
+                margin_error = 50;
+            
+            $('.step[data-step='+(target)+'] :input').each(function(e) {
             
             if ($(this).prop('required')) {
             
-              if ($(this).val() !== '') {
+              if ($(this).val()) {
               
                 if ($(this).attr('name') == 'siret') {
                 
                   if (EstSiretValide($(this).val())) {
                     
                     valide = true;
-                    return false;
                     
                   } else {
-                    $(this).removeClass('valid');
-                    $(this).addClass('invalid');
                     
-                    $(this).after("<div class='input-error'>Le SIRET n'est pas correct, veuillez le vérifier.</div>");
-                    $('.input-error').delay(3000).hide(0);
+                    pos_error = $(this).offset().top;
+                    valide = false;
                     
-                    $(this).next('label').addClass('active');
+                    error_input($(this), "Le SIRET n'est pas correct, veuillez le vérifier.");
                     
                     return false;
                   }
@@ -542,18 +633,13 @@ class DefaultLayout extends Layout
                   $(this).addClass('valid');
                   
                   valide = true;
-                  return false;
                   
                 }
               } else {
-              
-                $(this).removeClass('valid');
-                $(this).addClass('invalid');
+                pos_error = $(this).offset().top;
+                valide = false;
                 
-                $(this).after("<div class='input-error'>Veuillez renseigner ce champs</div>");
-                $('.input-error').delay(3000).hide(0);
-                
-                $(this).next('label').addClass('active');
+                error_input($(this), "Veuillez renseigner ce champs.");
                 
                 return false;
             
@@ -562,7 +648,21 @@ class DefaultLayout extends Layout
             
            });
            
+           if (!valide) {
+             $('html, body').animate({scrollTop:pos_error - margin_error});
+           }
+           
            return valide;
+          }
+          
+          function error_input(target, msg, delay = 5000) {
+            target.removeClass('valid');
+            target.addClass('invalid');
+            
+            target.after("<div class='input-error'>" + msg  + "</div>");
+            $('.input-error').delay(delay).hide(0);
+            
+            target.next('label').addClass('active');
           }
          
          function onLocationFound(e) {
