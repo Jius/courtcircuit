@@ -8,7 +8,7 @@ use RedBeanPHP\R;
 class DashboardView extends View
 {
   const EVENTS = [
-    'request::producer::dashboard' => 'content',
+    'request::producer::logged::dashboard' => 'content',
   ];
   
   const TPL = <<<HTML

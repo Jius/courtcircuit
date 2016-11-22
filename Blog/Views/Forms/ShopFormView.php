@@ -7,7 +7,7 @@ use RedBeanPHP\R;
 class ShopFormView extends View
 {
   const EVENTS = [
-    'request::producer::shop::new' => 'content'
+    'request::producer::logged::shop::new' => 'content'
   ];
 
     const TPL = <<<HTML

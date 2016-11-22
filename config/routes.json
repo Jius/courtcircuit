@@ -29,10 +29,13 @@
   "producer::new": {
     "route": "/producteur/nouveau"
   },
-  "producer::dashboard": {
+  "producer::logged::dashboard": {
    "route": "/pro/tableau-de-bord"
   },
-  "producer::shop::new": {
+  "producer::logged::shop::new": {
    "route": "/pro/boutique"
+  },
+  "producer::logged::shop::create": {
+   "route": "/shop/create"
   }
 }
