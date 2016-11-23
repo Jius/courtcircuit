@@ -13,16 +13,6 @@
     "route": "/register"
   },
   
-  "user::auth": {
-    "route": "/authentification"
-  },
-  "user::new": {
-    "route": "/utilisateur/nouveau"
-  },
-  "user::create": {
-    "route": "/user/create"
-  },
-  
   "producer::auth": {
     "route": "/espace-producteur"
   },
