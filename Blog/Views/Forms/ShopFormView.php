@@ -12,7 +12,7 @@ class ShopFormView extends View
 
     const TPL = <<<HTML
     <div class="row">
-      <form class="form-container col s6 offset-s3" action="/shop/create" method="post">
+      <form class="form-container col s10 offset-s1" action="/shop/create" method="post">
           <p class="title big">Inscription de votre <b>boutique</b></p>
           <p class="step-title center-align"></p>
           <p class="step-indicator center-align">Etape <span class="active">1</span> / <span class="total">3</span></p>
