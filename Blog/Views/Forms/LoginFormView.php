@@ -42,26 +42,32 @@ class LoginFormView extends View
         <div class="row">
           <div class="col s12">
             <p class="title big left no-margin">Pas encore inscrit ?</p>
-            <a class="waves-effect waves-light btn register left light-blue" href="/{{role_t}}/nouveau">Je m'inscris</a>
+            <a class="waves-effect waves-light btn register right light-blue hide-on-med-and-down" href="/{{role_t}}/nouveau">Je m'inscris</a>
+          </div>
+        </div>
+        
+        <div class="row show-on-medium-and-down">
+          <div class="col s12">
+            <a class="waves-effect waves-light btn big register left light-blue hide-on-large-only" href="/{{role_t}}/nouveau">Je m'inscris</a>
           </div>
         </div>
         
         <div class="row">
-          <div class="col s4">
+          <div class="col s12 m12 l4">
             <div class="center promo promo-example">
               <i class="medium indigo-text material-icons">flash_on</i>
               <p class="promo-caption">Développement accéléré</p>
               <p class="light center">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.</p>
             </div>
           </div>
-          <div class="col s4">
+          <div class="col s12 m12 l4">
             <div class="center promo promo-example">
               <i class="medium red-text material-icons">group</i>
               <p class="promo-caption">Centré sur l'experience utilisateur</p>
               <p class="light center">By utilizing elements and principles of Material Design, we were able to create a framework that focuses on User Experience.</p>
             </div>
           </div>
-          <div class="col s4">
+          <div class="col s12 m12 l4">
             <div class="center promo promo-example">
               <i class="medium orange-text material-icons">settings</i>
               <p class="promo-caption">Facile à prendre en main</p>

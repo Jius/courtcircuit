@@ -19,15 +19,26 @@ class DefaultLayout extends Layout
     
     <style>
       .header {
+        position: relative;
         background: #fcfcfc;
         height: 100px;
         -webkit-box-shadow: 0 0 10px 1px #4F4F4F;
         box-shadow: 0 0 10px 1px #4F4F4F;
       }
+      .button-collapse {
+        left: 5px;
+        position: absolute;
+        top: 15px;
+        z-index: 
+      }
+      .button-collapse i {
+        font-size: 3rem;
+      }
       .logo {
         font-size: 35px;
-        height: 100px;
-        line-height: 75px;
+        height: 100p;
+        top: 15px;
+        position: absolute;
         margin: 0;
         padding: 0;
       }
@@ -63,6 +74,10 @@ class DefaultLayout extends Layout
         
       }
       
+      .side-nav li {
+        position: relative;
+      }
+      
       .logout {
         bottom: 18px;
         height: 20px;
@@ -75,6 +90,21 @@ class DefaultLayout extends Layout
       .logout i {
         font-size: 1rem;
         line-height: 20px;
+      }
+      
+      .logout-mobile {
+        height: 20px !important;
+        line-height: 20px !important;
+        padding: 0 !important;
+        position: absolute;
+        top: 2px;
+        right: 0;
+        width: 20px !important;
+      }
+      .logout-mobile i {
+        color: white !important;
+        line-height: 20px !important;
+        width: 20px !important;
       }
       
       .no-bottom {
@@ -203,7 +233,7 @@ class DefaultLayout extends Layout
         margin: 0;
       }
       .btn.register {
-        margin: 5px 0 0 5%;
+        margin: 5px 0 0 0;
       }
       .btn.big {
         width: 100%;
@@ -385,8 +415,10 @@ class DefaultLayout extends Layout
         //END MAP INIT
         
         
-        
         $('.tooltipped').tooltip({delay: 50});
+        $(".button-collapse").sideNav();
+        $('select').material_select();
+        
         
         $(document).on ("click", "#submit-adress", function () {
           $('#adress').attr('value', $(this).attr('adress'));
@@ -395,8 +427,6 @@ class DefaultLayout extends Layout
           $('#coordinates').attr('value', $(this).attr('coordinates'));
         });
         
-        $('select').material_select();
-        $(".button-collapse").sideNav();
         
         
         //Init step form producer
@@ -596,9 +626,9 @@ class DefaultLayout extends Layout
          
          
          /*
-         * CUSTOM FUNCTION 
-         *
-         */
+          * CUSTOM FUNCTION 
+          *
+          */
          
           function validateStep(target) {
             var valide = false,
@@ -607,44 +637,44 @@ class DefaultLayout extends Layout
             
             $('.step[data-step='+(target)+'] :input').each(function(e) {
             
-            if ($(this).prop('required')) {
-            
-              if ($(this).val()) {
+              if ($(this).prop('required')) {
               
-                if ($(this).attr('name') == 'siret') {
+                if ($(this).val()) {
                 
-                  if (EstSiretValide($(this).val())) {
-                    
-                    valide = true;
+                  if ($(this).attr('name') == 'siret') {
+                  
+                    if (EstSiretValide($(this).val())) {
+                      
+                      valide = true;
+                      
+                    } else {
+                      
+                      pos_error = $(this).offset().top;
+                      valide = false;
+                      
+                      error_input($(this), "Le SIRET n'est pas correct, veuillez le vérifier.");
+                      
+                      return false;
+                    }
                     
                   } else {
                     
-                    pos_error = $(this).offset().top;
-                    valide = false;
+                    $(this).removeClass('invalid');
+                    $(this).addClass('valid');
                     
-                    error_input($(this), "Le SIRET n'est pas correct, veuillez le vérifier.");
+                    valide = true;
                     
-                    return false;
                   }
-                  
                 } else {
+                  pos_error = $(this).offset().top;
+                  valide = false;
                   
-                  $(this).removeClass('invalid');
-                  $(this).addClass('valid');
+                  error_input($(this), "Veuillez renseigner ce champs.");
                   
-                  valide = true;
-                  
+                  return false;
+              
                 }
-              } else {
-                pos_error = $(this).offset().top;
-                valide = false;
-                
-                error_input($(this), "Veuillez renseigner ce champs.");
-                
-                return false;
-            
               }
-            }
             
            });
            
@@ -655,7 +685,8 @@ class DefaultLayout extends Layout
            return valide;
           }
           
-          function error_input(target, msg, delay = 5000) {
+          function error_input(target, msg, delay) {
+            delay = delay || 5000;
             target.removeClass('valid');
             target.addClass('invalid');
             
