@@ -167,6 +167,9 @@ class DefaultLayout extends Layout
         color: #9e9e9e;
         font-size: 1rem;
       }
+      .step .caption.medium {
+        font-size: 2rem;
+      }
       .step {
         margin: 30px 0 0;
       }
@@ -254,25 +257,23 @@ class DefaultLayout extends Layout
         margin: 0 15px 0 0;
       }
       
-      .daytable {
-        padding: 5px 0;
-        text-align: center;
-      }
-      .daytable li {
-        display: inline-block;
-        margin: 0 0 5px 0;
-        width: 70px;
-        height: 50px;
-        line-height: 50px;
+      .daytable .day {
         background: white;
+        min-height: 50px;
+        line-height: 50px;
         border: 1px #bdbdbd solid;
+        margin: 0 10px 10PX 0;
+        padding: 0;
         -webkit-transition: all 400ms ease;
         -moz-transition: all 400ms ease;
         -ms-transition: all 400ms ease;
         -o-transition: all 400ms ease;
         transition: all 400ms ease;
       }
-      .daytable li:hover {
+      .daytable .day p {
+        margin: 0;
+      }
+      .daytable .day .label:hover {
         cursor: pointer;
         font-weight: bold;
         -webkit-transition: all 400ms ease;
@@ -281,11 +282,17 @@ class DefaultLayout extends Layout
         -o-transition: all 400ms ease;
         transition: all 400ms ease;
       }
-      .daytable li.selected {
+      .daytable .day.selected {
         border: none;
-        font-weight: bold;
         -webkit-box-shadow: 0 0 5px 1px #4caf50;
         box-shadow: 0 0 5px 1px #4caf50;
+      }
+      .daytable .day.selected .label {
+        border-bottom: 1px #bdbdbd dotted;
+        font-weight: bold;
+      }
+      .daytable .day .opening {
+        padding: 5px;
       }
       
       ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -313,6 +320,13 @@ class DefaultLayout extends Layout
       
       .no-margin {
         margin: 0;
+      }
+      
+      .hero {
+        background: white;
+        padding: 20px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
       }
       
       /**Margin Top**/
@@ -392,13 +406,13 @@ class DefaultLayout extends Layout
           
           adressMap.locate({setView: true, maxZoom: 14});
           
-            var options = {
-              position: 'topright',
-              placeholder: 'Adresse de votre boutique *',
-              title: 'search-map',
-              expanded: true
+          var options = {
+                position: 'topright',
+                placeholder: 'Adresse de votre boutique *',
+                title: 'search-map',
+                expanded: true
               },
-                geocoder = L.control.geocoder('mapzen-aX1TAnZ', options);
+              geocoder = L.control.geocoder('mapzen-aX1TAnZ', options);
           
           geocoder.addTo(adressMap);
           
@@ -561,46 +575,50 @@ class DefaultLayout extends Layout
          *
          */
           
-          var   memoryInput = $('input[name="daytable"]').val();
+          var   memoryInput = $('input[name="daytable"]').val(); //If user reload navigator
                 
-          $('.daytable').children('li').each(function() {
-            var day = $(this).text().toLowerCase();
+          $('.daytable .day').each(function() {
+            var day = $(this).find('p').text().toLowerCase();
+            
+            $(this).find('.opening').hide();
             
             if (memoryInput.includes(day)) {
               $(this).toggleClass('selected');
             }
+            
           });
          
          
-         $('.daytable').children('li').click(function() {
+         $('.daytable .day p.label').click(function() {
          
           var day = $(this).text().toLowerCase();
           
-          $('input[name="daytable"]').val(function(i,val) { 
+          $(this).next('.opening').slideToggle( "slow" );
+                    
+          addOrDeleteDay(day);
           
-            if (!val.includes(day)) {
-              val = (val.length == 0 ? day : val + ',' + day);
-            } else {
-              
-              if (val.includes(',')) {
-              
-                val = (val.indexOf(day) == 0 ? val.replace(day + ',' , '') : val.replace(',' + day , ''));
-                
-              } else {
-              
-                val = val.replace(day , '');
-                
-              }
-              
-            }
-            
-            return val;
-           
-          });
-          
-          $(this).toggleClass('selected');
+          $(this).parent('.day').toggleClass('selected');
           
          });
+         
+         function addOrDeleteDay(day, nameInput)
+         {
+           var nameInput = nameInput || "daytable";
+           
+           $('input[name=' + nameInput + ']').val(function(i,val) { 
+              if (!val.includes(day)) {
+                val = (val.length == 0 ? day : val + ',' + day);
+              } else {
+                if (val.includes(',')) {
+                  val = (val.indexOf(day) == 0 ? val.replace(day + ',' , '') : val.replace(',' + day , ''));
+                } else {
+                  val = val.replace(day , '');
+                }
+              }
+              
+              return val;
+            });
+         }
          
          
          /*

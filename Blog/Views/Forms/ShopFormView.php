@@ -62,8 +62,18 @@ class ShopFormView extends View
             
             <div class="row adress-container">
               <div class="col s12">
-                <p class="caption">Rechercher sur la carte, l'adresse de votre boutique</p>
-                <div id="adress-map"></div>
+                <p class="caption medium">Adresse</p>
+                <div class="hero">
+                  <p class="caption no-margin">
+                    L'adresse correspond à votre vitrine, ou le lieu où vous pouvez vendre vos produit. <br/> 
+                    Il se peut que vous n'en avez pas (que vous êtes nomades), dans ce cas là, veuillez cocher la case suivante, puis à la fin de l'inscription je vous invite à rentrer les dates de vos déplacements.
+                  </p>
+                  <p>
+                    <input type="checkbox" class="filled-in" id="no-adress" name="no-adress"/>
+                    <label for="no-adress">Vous n'avez pas de vitrine pour vendre chez vous ?</label>
+                  </p>
+                </div>
+                <div id="adress-map" class="m-t-med"></div>
               </div>
               
               <div class="indicator-adress">
@@ -78,91 +88,348 @@ class ShopFormView extends View
             
             <div class="row timetable">
               <div class="col s12">
-                <p class="title med">Horaires et jours d'ouvertures</p>
-                <ul class="collapsible" data-collapsible="expandable">
+                <p class="caption medium">Horaires et jours d'ouvertures</p>
                 
-                  <li>
-                    <div class="collapsible-header"><i class="material-icons">today</i>Jours d'ouvertures</div>
-                    <div class="collapsible-body">
-                      <ul class="daytable">
-                        <li>Lundi</li>
-                        <li>Mardi</li>
-                        <li>Mercredi</li>
-                        <li>Jeudi</li>
-                        <li>Vendredi</li>
-                        <li>Samedi</li>
-                        <li>Dimanche</li>
-                      </ul>
-                      <input type="hidden" name="daytable">
-                    </div>
-                  </li>
-                  
-                  <li>
-                    <div class="collapsible-header"><i class="material-icons">access_time</i>Plage horaire</div>
-                    <div class="collapsible-body">
+                <div class="row daytable">
+                
+                  <div class="col s2 day">
+                    <p class="label center-align">Lundi</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-lundi" type="text" class="validate hour" name="hour-start-lundi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-lundi" type="text" class="validate hour" name="hour-end-lundi">
+                          </div>
+                        </div>
+                      </div>
+                      
                       <p>
-                        <input type="checkbox" class="filled-in" id="openAll" name="all-day"/>
-                        <label for="openAll">Ouvert toute la journée sans interruption</label>
+                        <input type="checkbox" class="filled-in" id="split-lundi" name="split-lundi"/>
+                        <label for="split-lundi">Interruption</label>
                       </p>
                       
-                      <div class="clocktable all">
+                      <div class="split">
+                        Matin:
                         <div class="row">
-                          <div class="col s12">
-                            <p>Horaire de la journée</p>
-                            <div class="input-field col s4">
-                              <input id="h-start" name="h-start" type="text" class="validate">
-                              <label for="h-start">Début</label>
-                            </div>
-                            <div class="input-field col s4">
-                              <input id="h-finish" name="h-finish" type="text" class="validate">
-                              <label for="h-finish">Fin</label>
-                            </div>
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-lundi" type="text" class="validate hour" name="hour-start-am-lundi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-lundi" type="text" class="validate hour" name="hour-end-am-lundi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-lundi" type="text" class="validate hour" name="hour-start-pm-lundi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-lundi" type="text" class="validate hour" name="hour-end-pm-lundi">
                           </div>
                         </div>
                       </div>
                       
-                      <div class="clocktable split">
-                        <div class="row">
-                          <div class="col s6">
-                            <p>Horaire de matinée</p>
-                            <div class="input-field col s6">
-                              <input id="am-start" name="am-start" type="text" class="validate">
-                              <label for="am-start">Début</label>
-                            </div>
-                            <div class="input-field col s6">
-                              <input id="am-finish" name="am-finish" type="text" class="validate">
-                              <label for="am-finish">Fin</label>
-                            </div>
-                          </div>
-                          
-                          <div class="col s6">
-                            <p>Horaire de l'après-midi</p>
-                            <div class="input-field col s6">
-                              <input id="pm-start" name="pm-start" type="text" class="validate">
-                              <label for="pm-start">Début</label>
-                            </div>
-                            <div class="input-field col s6">
-                              <input id="pm-finish" name="pm-finish" type="text" class="validate">
-                              <label for="pm-finish">Fin</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="clocktable special">
-                        <div class="row">
-                          <div class="col s12">
-                            <div class="input-field col s12">
-                              <textarea  id="timespecial" name="time-special" class="materialize-textarea"></textarea>
-                              <label for="timespecial">Vous avez des horaires spéciaux (en fonction du jour de la semaine...) ?</label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </li>
+                  </div>
                   
-                </ul>
+                  <div class="col s2 day">
+                    <p class="label center-align">Mardi</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-mardi" type="text" class="validate hour" name="hour-start-mardi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-mardi" type="text" class="validate hour" name="hour-end-mardi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-mardi" name="split-mardi"/>
+                        <label for="split-mardi">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-mardi" type="text" class="validate hour" name="hour-start-am-mardi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-mardi" type="text" class="validate hour" name="hour-end-am-mardi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-mardi" type="text" class="validate hour" name="hour-start-pm-mardi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-mardi" type="text" class="validate hour" name="hour-end-pm-mardi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="col s2 day">
+                    <p class="label center-align">Mercredi</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-mercredi" type="text" class="validate hour" name="hour-start-mercredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-mercredi" type="text" class="validate hour" name="hour-end-mercredi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-mercredi" name="split-mercredi"/>
+                        <label for="split-mercredi">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-mercredi" type="text" class="validate hour" name="hour-start-am-mercredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-mercredi" type="text" class="validate hour" name="hour-end-am-mercredi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-mercredi" type="text" class="validate hour" name="hour-start-pm-mercredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-mercredi" type="text" class="validate hour" name="hour-end-pm-mercredi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="col s2 day">
+                    <p class="label center-align">Jeudi</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-jeudi" type="text" class="validate hour" name="hour-start-jeudi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-jeudi" type="text" class="validate hour" name="hour-end-jeudi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-jeudi" name="split-jeudi"/>
+                        <label for="split-jeudi">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-jeudi" type="text" class="validate hour" name="hour-start-am-jeudi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-jeudi" type="text" class="validate hour" name="hour-end-am-jeudi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-jeudi" type="text" class="validate hour" name="hour-start-pm-jeudi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-jeudi" type="text" class="validate hour" name="hour-end-pm-jeudi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="col s2 day">
+                    <p class="label center-align">Vendredi</p>
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-vendredi" type="text" class="validate hour" name="hour-start-vendredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-vendredi" type="text" class="validate hour" name="hour-end-vendredi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-vendredi" name="split-vendredi"/>
+                        <label for="split-vendredi">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-vendredi" type="text" class="validate hour" name="hour-start-am-vendredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-vendredi" type="text" class="validate hour" name="hour-end-am-vendredi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-vendredi" type="text" class="validate hour" name="hour-start-pm-vendredi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-vendredi" type="text" class="validate hour" name="hour-end-pm-vendredi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="col s2 day">
+                    <p class="label center-align">Samedi</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-samedi" type="text" class="validate hour" name="hour-start-samedi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-samedi" type="text" class="validate hour" name="hour-end-samedi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-samedi" name="split-samedi"/>
+                        <label for="split-samedi">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-samedi" type="text" class="validate hour" name="hour-start-am-samedi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-samedi" type="text" class="validate hour" name="hour-end-am-samedi">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-samedi" type="text" class="validate hour" name="hour-start-pm-samedi">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-samedi" type="text" class="validate hour" name="hour-end-pm-samedi">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="col s2 day">
+                    <p class="label center-align">Dimanche</p>
+                    
+                    <div class="opening">
+                      <p class="caption">Horaires</p>
+                      
+                      <div class="all">
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-dimanche" type="text" class="validate hour" name="hour-start-dimanche">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À" id="hour-end-dimanche" type="text" class="validate hour" name="hour-end-dimanche">
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p>
+                        <input type="checkbox" class="filled-in" id="split-dimanche" name="split-dimanche"/>
+                        <label for="split-dimanche">Interruption</label>
+                      </p>
+                      
+                      <div class="split">
+                        Matin:
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De" id="hour-start-am-dimanche" type="text" class="validate hour" name="hour-start-am-dimanche">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-am-dimanche" type="text" class="validate hour" name="hour-end-am-dimanche">
+                          </div>
+                        </div>
+                        
+                        Et l'après-midi:
+                        
+                        <div class="row">
+                          <div class="col s6">
+                            <input placeholder="De " id="hour-start-pm-dimanche" type="text" class="validate hour" name="hour-start-pm-dimanche">
+                          </div>
+                          <div class="col s6">
+                            <input placeholder="À " id="hour-end-pm-dimanche" type="text" class="validate hour" name="hour-end-pm-dimanche">
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+                
+                <input type="hidden" name="daytable">
                 
               </div>
             </div>
