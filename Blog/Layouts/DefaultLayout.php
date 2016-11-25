@@ -581,11 +581,23 @@ class DefaultLayout extends Layout
             var day = $(this).find('p').text().toLowerCase();
             
             $(this).find('.opening').hide();
+            if ($(this).find('.opening .check-split').prop('checked')) {
+              $(this).find('.opening .all').hide();
+              $(this).find('.opening .split').show();
+            } else {
+              $(this).find('.opening .all').show();
+              $(this).find('.opening .split').hide();
+            }
             
             if (memoryInput.includes(day)) {
               $(this).toggleClass('selected');
             }
             
+          });
+          
+          $('input.check-split').change(function() {
+              $(this).parents('.opening').find('.all').slideToggle();
+              $(this).parents('.opening').find('.split').slideToggle();
           });
          
          
