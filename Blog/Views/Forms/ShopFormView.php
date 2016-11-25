@@ -85,7 +85,51 @@ class ShopFormView extends View
               
               <input id="coordinates" type="hidden" name="coordinates">
             </div>
+          </div>
+          
+          <div class="step" data-title="Mieux connaître vos produits">
             
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="description" name="description" class="materialize-textarea"></textarea>
+                <label for="description">Quelques mots sur votre boutiques et vos produits ? </label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s6">
+                <select name="category">
+                  <option value="" disabled selected>Choisissez une catégorie</option>
+                  {{#categories}}
+                    <option value="{{id}}">{{title}}</option> 
+                  {{/categories}}
+                  {{^categories}}
+                    <p>Aucune catégorie n'a été ajoutée</p>
+                  {{/categories}}
+                </select>
+                <label for="category">Catégorie de produits: </label>
+              </div>
+              
+              <div class="input-field col s6">
+                <select multiple name="labels[]">
+                  <option value="" disabled selected>Possèdez vous des labels ?</option>
+                  {{#labels}}
+                    <option value="{{id}}">{{title}}</option> 
+                  {{/labels}}
+                  {{^labels}}
+                    <p>Aucun label n'a été ajoutée</p>
+                  {{/labels}}
+                </select>
+                <label for="labels">Label(s): </label>
+              </div>
+            </div>
+            
+            <p class="caption">Insérer des mots-clés pour mieux vous retrouver, par les internautes</p>
+            <div class="chips chips-placeholder"></div>
+            <input id="hiddentags" type="hidden" name="tags">
+          </div>
+          
+          <div class="step" data-title="Horaires et jours d'ouvertures">
             <div class="row timetable">
               <div class="col s12">
                 <p class="caption medium">Horaires et jours d'ouvertures</p>
@@ -331,9 +375,6 @@ class ShopFormView extends View
                     </div>
                   </div>
                 </div>
-                
-                <input type="hidden" name="daytable">
-                
               </div>
             </div>
             
@@ -434,56 +475,14 @@ class ShopFormView extends View
                 </div>
               </div>
             </div>
-            
+            <input type="hidden" name="daytable">
           </div>
           
-          <div class="step" data-title="Mieux connaître vos produits">
-            
-            <div class="row">
-              <div class="input-field col s12">
-                <textarea  id="description" name="description" class="materialize-textarea"></textarea>
-                <label for="description">Quelques mots sur votre boutiques et vos produits ? </label>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="input-field col s6">
-                <select name="category">
-                  <option value="" disabled selected>Choisissez une catégorie</option>
-                  {{#categories}}
-                    <option value="{{id}}">{{title}}</option> 
-                  {{/categories}}
-                  {{^categories}}
-                    <p>Aucune catégorie n'a été ajoutée</p>
-                  {{/categories}}
-                </select>
-                <label for="category">Catégorie de produits: </label>
-              </div>
-              
-              <div class="input-field col s6">
-                <select multiple name="labels[]">
-                  <option value="" disabled selected>Possèdez vous des labels ?</option>
-                  {{#labels}}
-                    <option value="{{id}}">{{title}}</option> 
-                  {{/labels}}
-                  {{^labels}}
-                    <p>Aucun label n'a été ajoutée</p>
-                  {{/labels}}
-                </select>
-                <label for="labels">Label(s): </label>
-              </div>
-            </div>
-            
-            <p class="caption">Insérer des mots-clés pour mieux vous retrouver, par les internautes</p>
-            <div class="chips chips-placeholder"></div>
-            <input id="hiddentags" type="hidden" name="tags">
-            
-            <div class="row">
-              <div class="col s12">
-                <button class="btn waves-effect waves-light right" type="submit" name="action" id="submit-producer">Enregistrer la boutique
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>
+          <div class="row submit-producer-container">
+            <div class="col s12">
+              <button class="btn waves-effect waves-light right orange" type="submit" name="action" id="submit-producer">Enregistrer la boutique
+                <i class="material-icons right">send</i>
+              </button>
             </div>
           </div>
           

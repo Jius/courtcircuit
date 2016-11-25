@@ -436,10 +436,15 @@ class DefaultLayout extends Layout
         
         //Init step form producer
         $('.step-prev').hide();
+        $('.submit-producer-container').hide();
         
         var cpt=1, 
             steps = $('.step').length;
-            
+        
+        if (cpt == steps) {
+          $('.submit-producer-container').fadeToggle();
+        }
+        
         $('.step-indicator .active').html(cpt);
         $('.step-indicator .total').html(steps);
         
@@ -492,6 +497,7 @@ class DefaultLayout extends Layout
               $(this).attr('link-step', target+1);
             } else {
               $(this).hide();
+              $('.submit-producer-container').fadeToggle();
             }
             
           }
