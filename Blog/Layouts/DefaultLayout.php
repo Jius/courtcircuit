@@ -79,32 +79,23 @@ class DefaultLayout extends Layout
       }
       
       .logout {
-        bottom: 18px;
-        height: 20px;
-        line-height: 20px;
+        bottom: 10px;
         position: absolute;
-        right: 0;
-        width: 20px;
+        right: -40px;
         z-index: 1;
       }
-      .logout i {
-        font-size: 1rem;
-        line-height: 20px;
-      }
       
-      .logout-mobile {
-        height: 20px !important;
-        line-height: 20px !important;
-        padding: 0 !important;
-        position: absolute;
-        top: 2px;
-        right: 0;
-        width: 20px !important;
+      .logout.mobile {
+        bottom: -5px;
+        height: 38px;
+        padding: 0;
+        right: -5px;
+        width: 38px;
       }
-      .logout-mobile i {
-        color: white !important;
-        line-height: 20px !important;
-        width: 20px !important;
+      .logout.mobile i {
+        font-size: 2.5rem;
+        line-height: 38px !important;
+        width: 40px !important;
       }
       
       .no-bottom {

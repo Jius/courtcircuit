@@ -9,6 +9,9 @@
   "action::login": {
     "route": "/login"
   },
+  "action::logout": {
+    "route": "/logout"
+  },
   "action::register": {
     "route": "/register"
   },

@@ -43,7 +43,13 @@ class LoginAction extends Action
             
               $userSession = $this->prepareUserSession($user);
               Session::load()->set('user', $userSession);
-              $this->redirect('/');
+              
+              if ($table == 'producer') {
+                $this->redirect('/pro/tableau-de-bord');
+              } else {
+                $this->redirect('/');
+              }
+              
               
           } else {
               $this->info('Mot de passe erroné');
