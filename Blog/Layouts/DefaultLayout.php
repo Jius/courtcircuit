@@ -559,7 +559,9 @@ class DefaultLayout extends Layout
            $('.welcome').fadeIn();
          });
          
-         
+        $("input[name=itinerant]").change(function() {
+            $(this).parents('.adress-container').find('#adress-map').fadeToggle();
+        });
          
          /*
          * DATETABLE JS
@@ -657,53 +659,62 @@ class DefaultLayout extends Layout
                 margin_error = 50;
             
             $('.step[data-step='+(target)+'] :input').each(function(e) {
-            
-              if ($(this).prop('required')) {
-              
-                if ($(this).val()) {
-                
-                  if ($(this).attr('name') == 'siret') {
-                  
-                    if (EstSiretValide($(this).val())) {
-                      
-                      valide = true;
-                      
-                    } else {
-                      
-                      pos_error = $(this).offset().top;
-                      valide = false;
-                      
-                      error_input($(this), "Le SIRET n'est pas correct, veuillez le vérifier.");
-                      
-                      return false;
-                    }
-                    
-                  } else {
-                    
-                    $(this).removeClass('invalid');
-                    $(this).addClass('valid');
-                    
-                    valide = true;
-                    
-                  }
-                } else {
-                  pos_error = $(this).offset().top;
-                  valide = false;
-                  
-                  error_input($(this), "Veuillez renseigner ce champs.");
-                  
-                  return false;
-              
-                }
+              if (!verifyInput($(this))) {
+                valide = false;
+                pos_error = $(this).offset().top;
+                return false;
+              } else {
+                valide = true;
               }
-            
-           });
+            });
            
-           if (!valide) {
+            if (!valide) {
              $('html, body').animate({scrollTop:pos_error - margin_error});
-           }
+            }
            
-           return valide;
+            return valide;
+          }
+          
+          
+          
+          function verifyInput(obj)
+          {
+            var nSearchMap = "search-map";
+            
+            if (obj.prop('required')) {
+              if (obj.val()) {
+                if (obj.attr('name') == 'siret') {
+                  if (EstSiretValide(obj.val())) {
+                    return true;
+                  } else {
+                    error_input(obj, "Le SIRET n'est pas correct, veuillez le vérifier.");
+                    return false;
+                  }
+                  
+                } else {
+                  
+                  obj.removeClass('invalid');
+                  obj.addClass('valid');
+                  
+                  return true;
+                  
+                }
+              } else if (obj.attr('title') == nSearchMap) {
+              
+                if ($("input[name=itinerant]").prop("checked")) {
+                  return true;
+                } else {
+                  error_input(obj, "Veuillez renseigner ce champs.");
+                  return false;
+                }
+              
+              } else {
+                error_input(obj, "Veuillez renseigner ce champs.");
+                return false;
+              }
+            } else {
+              return true;
+            }
           }
           
           function error_input(target, msg, delay) {

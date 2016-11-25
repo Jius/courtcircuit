@@ -69,8 +69,8 @@ class ShopFormView extends View
                     Il se peut que vous n'en avez pas (que vous êtes nomades), dans ce cas là, veuillez cocher la case suivante, puis à la fin de l'inscription je vous invite à rentrer les dates de vos déplacements.
                   </p>
                   <p>
-                    <input type="checkbox" class="filled-in" id="no-adress" name="no-adress"/>
-                    <label for="no-adress">Vous n'avez pas de vitrine pour vendre chez vous ?</label>
+                    <input type="checkbox" class="filled-in" id="itinerant" name="itinerant"/>
+                    <label for="itinerant">Vous n'avez pas de vitrine pour vendre chez vous ?</label>
                   </p>
                 </div>
                 <div id="adress-map" class="m-t-med"></div>
