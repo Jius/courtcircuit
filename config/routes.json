@@ -1,4 +1,11 @@
 {
+  "statics": {
+    "route": "/statics/{folder}/{file}",
+    "params": {
+      "folder": ".+",
+      "file": ".+"
+    }
+  },
   "index": {
     "route": "/"
   },
