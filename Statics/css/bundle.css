@@ -9,14 +9,14 @@
   left: 5px;
   position: absolute;
   top: 15px;
-  z-index: 
+  z-index: 10;
 }
 .button-collapse i {
   font-size: 3rem;
 }
 .logo {
   font-size: 35px;
-  height: 100p;
+  height: 100px;
   top: 15px;
   position: absolute;
   margin: 0;
