@@ -492,6 +492,7 @@ class ShopFormView extends View
           </div>
           
           <input type="hidden" name="validate_shop" value="false">
+          <input type="hidden" name="owner" value="{{producerId}}">
       </form>
     </div>
     
@@ -501,6 +502,7 @@ HTML;
     {
       $categories = R::findAll('category','ORDER BY title');
       $labels = R::findAll('labels','ORDER BY title');
-      return ['categories' => array_values($categories), 'labels' => array_values($labels)];
+      $user = Session::load()->get('user');
+      return ['categories' => array_values($categories), 'labels' => array_values($labels), "producerId" => $user["id"]];
     }
 }
