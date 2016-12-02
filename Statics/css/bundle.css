@@ -220,9 +220,7 @@ label span.required {
 .head-dash {
   margin: 0 0 8% 0;
 }
-.shop-container {
-  margin-bottom: 20px;
-}
+
 .dash-lab {
   display: inline;
   margin: 0 15px 0 0;
@@ -264,6 +262,46 @@ label span.required {
 }
 .daytable .day .opening {
   padding: 5px;
+}
+
+.shop-container {
+  margin-bottom: 20px;
+}
+.shops-card {
+  margin-top: 20px;
+}
+.shop {
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 1px 5px 1px #616161;
+  height: 100%;
+  margin: 0;
+  transition: all 400ms ease;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0 1px 5px 1px #616161;
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+}
+.shop:hover {
+  box-shadow: 0 1px 15px 1px #757575;
+  cursor: pointer;
+  transition: all 400ms ease;
+  -webkit-box-shadow: 0 1px 15px 1px #757575;
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+}
+.shop a {
+    color: black;
+    display: inline-block;
+    font-size: 24px;
+    height: 100%;
+    line-height: 80px;
+    min-height: 80px;
+    text-align: center;
+    width: 100%;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
