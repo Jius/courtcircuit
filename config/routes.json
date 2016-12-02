@@ -37,5 +37,12 @@
   },
   "producer::logged::shop::create": {
    "route": "/shop/create"
+  },
+  "producer::logged::shop::edit": {
+   "route": "/shop/{id}",
+    "params": {
+      "id": ".+"
+    }
   }
+  
 }
