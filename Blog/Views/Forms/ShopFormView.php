@@ -91,7 +91,7 @@ class ShopFormView extends View
             
             <div class="row">
               <div class="input-field col s12">
-                <textarea  id="description" name="description" class="materialize-textarea"></textarea>
+                <textarea  id="description" name="description" class="materialize-textarea" required></textarea>
                 <label for="description">Quelques mots sur votre boutiques et vos produits ? </label>
               </div>
             </div>

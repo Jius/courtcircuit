@@ -39,7 +39,13 @@
    "route": "/shop/create"
   },
   "producer::logged::shop::edit": {
-   "route": "/shop/{id}",
+   "route": "/shop/edit/{id}",
+    "params": {
+      "id": ".+"
+    }
+  },
+  "producer::logged::shop::delete": {
+   "route": "/shop/delete/{id}",
     "params": {
       "id": ".+"
     }

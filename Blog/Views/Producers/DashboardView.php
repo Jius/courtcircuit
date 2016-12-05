@@ -25,9 +25,19 @@ class DashboardView extends View
       <div class="row shops-card">
       
         {{#shops?}}
-          <div class="center-align col s3">
-            <div class="shop white z-depth-3">
-              <a href="/shop/{{id}}">{{title}}</a>
+          <div class="col s3">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://lorempixel.com/640/480">
+                <span class="card-title text-shadow">{{title}}</span>
+              </div>
+              <div class="card-content">
+                <p>{{description}}</p>
+              </div>
+              <div class="card-action">
+                <a href="/shop/edit/{{id}}">Modifier</a>
+                <a class="red-text alert" href="#modal-delete" alert-href="/shop/delete/{{id}}" alert-title="{{title}}">Supprimer</a>
+              </div>
             </div>
           </div>
         {{/shops?}}

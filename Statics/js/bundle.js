@@ -43,6 +43,7 @@ $(document).ready(function() {
   $('.tooltipped').tooltip({delay: 50});
   $(".button-collapse").sideNav();
   $('select').material_select();
+  $('.modal').modal();
   
   
   $(document).on ("click", "#submit-adress", function () {
@@ -277,6 +278,20 @@ $(document).ready(function() {
       $('.clocktable.split').toggle();
     });
    
+   
+    /*
+    * MODALS ADDING DYNAMIC INFOS
+    *
+    */
+    $('.alert').click(function() {
+      var  idModal = $(this).attr("href"),
+          hrefModal = $(this).attr("alert-href"),
+          titleModal = $(this).attr("alert-title"),
+          title = "Supprimer " + titleModal;
+      console.log($(this));
+      $(idModal).find("h4").text(title);
+      $(idModal).find(".modal-confirm").attr("href", hrefModal);
+    });
    
    
    /*
