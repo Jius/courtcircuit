@@ -18,15 +18,15 @@ class DashboardView extends View
   </div>
   
   <div class="row shop-container">
-    <div class="col s12">
+    <div class="col s12 m6 l6">
       <p class="title big blue-text dash-lab">Vos boutiques</p>
       <a class="btn-floating btn-large waves-effect waves-light red" href="/pro/boutique"><i class="material-icons">add</i></a>
       
       <div class="row shops-card">
       
         {{#shops?}}
-          <div class="col s3">
-            <div class="card">
+          <div class="col s12 m12 l6">
+            <div class="card medium">
               <div class="card-image">
                 <img src="http://lorempixel.com/640/480">
                 <span class="card-title text-shadow">{{title}}</span>
@@ -52,10 +52,7 @@ class DashboardView extends View
       
     </div>
     
-  </div>
-  
-  <div class="row event-container">
-    <div class="col s12">
+    <div class="col s12 m6 l6">
       <p class="title big blue-text dash-lab">Evénements & Déplacements</p>
       <a class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">add</i></a>
       
