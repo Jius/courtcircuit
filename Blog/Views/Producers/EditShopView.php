@@ -37,7 +37,8 @@ HTML;
 			$idShop = $args["id"];
 			$shop = R::findOne('shops','id = :idShop AND owner = :idUser', [ ":idShop" => $idShop , ":idUser" => $user["id"] ]);
 			if ($shop) {
-				$this->shop = $shop;
+				$shop->labels = $this->getLabels($shop);
+				$this->shop = $shop->export();
 			} else {
 				$this->redirect("/pro/tableau-de-bord");
 			}
@@ -47,7 +48,26 @@ HTML;
   public function render()
   {
   	return [
-      'shop' => array($this->shop)
+      'shop' => $this->shop
     ];
+  }
+  
+  private function getLabels($shop) 
+  {
+  	if ($shop->labels) {
+	  	$ids = unserialize($shop->labels);
+			$labels = array();
+	  	if ($ids) {
+	  		foreach ($ids as $i=>$id) {
+	  			$lab = R::findOne('labels','id = ?', [ $id ]);
+	  			$labels[$i] = ["title" => $lab->title, "id" => $id];
+	  		}
+  			return $labels;
+	  	} else {
+	  		return null;
+	  	}
+  	} else {
+  		return null;
+  	}
   }
 }
