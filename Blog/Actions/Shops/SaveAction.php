@@ -19,6 +19,7 @@ class SaveAction extends Action
     
     if ($post->get('siret')) {
       $shop = R::dispense($table);
+      $tags = $post->get('tags');
       $postReady = $this->preparePost($post);
       
       foreach ($postReady as $key=>$value) {
@@ -30,6 +31,10 @@ class SaveAction extends Action
       
       if ($post->get("daytable")) {
         $shop->timetable = $this->prepareTimetable($post);
+      }
+      
+      if ($tags) {
+        R::tag( $shop, explode(';' , $tags ) );
       }
 
       $id = R::store($shop);
@@ -68,7 +73,7 @@ class SaveAction extends Action
   private function preparePost ($post) {
     $r = [];
     foreach ($post as $key=>$value) {
-      if (preg_match("#^hour|^split|^daytable#", $key)) {
+      if (preg_match("#^hour|^split|^daytable|^tags#", $key)) {
       } else {
         $r[$key] = $value;
       }
