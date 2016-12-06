@@ -55,7 +55,7 @@ class ShopFormView extends View
             
             <div class="row">
               <div class="input-field col s8">
-                <input id="web" name="web" type="text" class="validate">
+                <input id="web" name="web" type="url" class="validate">
                 <label for="web">Site web</label>
               </div>
             </div>

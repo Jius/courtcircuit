@@ -22,6 +22,9 @@ class SaveAction extends Action
       $postReady = $this->preparePost($post);
       
       foreach ($postReady as $key=>$value) {
+        if (is_array($value)) {
+          $value = serialize($value);
+        }
         $shop->$key = $value;
       }
       
