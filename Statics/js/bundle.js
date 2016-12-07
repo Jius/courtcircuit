@@ -39,7 +39,7 @@ $(document).ready(function() {
   
   //END MAP INIT
   
-  
+  $('.timetable').timetable();
   $('.tooltipped').tooltip({delay: 50});
   $(".button-collapse").sideNav();
   $('select').material_select();
@@ -196,88 +196,24 @@ $(document).ready(function() {
   });
    
    /*
-   * DATETABLE JS
+   * INIT PICKDATE
    *
    */
-    
-    var   memoryInput = $('input[name="daytable"]').val(); //If user reload navigator
-          
-    $('.daytable .day').each(function() {
-      var day = $(this).find('p').text().toLowerCase();
-      
-      $(this).find('.opening').hide();
-      if ($(this).find('.opening .check-split').prop('checked')) {
-        $(this).find('.opening .all').hide();
-        $(this).find('.opening .split').show();
-      } else {
-        $(this).find('.opening .all').show();
-        $(this).find('.opening .split').hide();
-      }
-      
-      if (memoryInput.includes(day)) {
-        $(this).toggleClass('selected');
-      }
-      
-    });
-    
-    $('input.check-split').change(function() {
-        $(this).parents('.opening').find('.all').slideToggle();
-        $(this).parents('.opening').find('.split').slideToggle();
-    });
-   
-   
-   $('.daytable .day p.label').click(function() {
-   
-    var day = $(this).text().toLowerCase();
-    
-    $(this).next('.opening').slideToggle( "slow" );
-              
-    addOrDeleteDay(day);
-    
-    $(this).parent('.day').toggleClass('selected');
-    
-   });
-   
-   function addOrDeleteDay(day, nameInput)
-   {
-     var nameInput = nameInput || "daytable";
-     
-     $('input[name=' + nameInput + ']').val(function(i,val) { 
-        if (!val.includes(day)) {
-          val = (val.length == 0 ? day : val + ',' + day);
-        } else {
-          if (val.includes(',')) {
-            val = (val.indexOf(day) == 0 ? val.replace(day + ',' , '') : val.replace(',' + day , ''));
-          } else {
-            val = val.replace(day , '');
-          }
-        }
-        
-        return val;
-      });
-   }
-   
-   
-   /*
-   * TIMETABLE JS
-   *
-   */
-    
-    var allDay = $('input[name="all-day"]').prop('checked');
-    
-    if (allDay) {
-      $('.clocktable.all').show();
-      $('.clocktable.split').hide();
-    } else {
-      $('.clocktable.all').hide();
-      $('.clocktable.split').show();
-    }
-    
-    $('input[name="all-day"]').click(function() {
-      $('.clocktable.all').toggle();
-      $('.clocktable.split').toggle();
-    });
-   
+    $('.timepicker.am').pickatime({
+      format: 'H!hi',
+      min: [6,0],
+      max: [15,0]
+    })
+    $('.timepicker.pm').pickatime({
+      format: 'H!hi',
+      min: [11,0],
+      max: [20,0]
+    })
+    $('.timepicker.full').pickatime({
+      format: 'H!hi',
+      min: [6,0],
+      max: [20,0]
+    })
    
     /*
     * MODALS ADDING DYNAMIC INFOS

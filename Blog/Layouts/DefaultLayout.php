@@ -38,6 +38,7 @@ class DefaultLayout extends Layout
     <script src="/statics/js/pickdate/picker.js"></script>
     <script src="/statics/js/pickdate/picker.date.js"></script>
     <script src="/statics/js/pickdate/picker.time.js"></script>
+    <script src="/statics/js/timetable/timetable.js"></script>
     <script src="/statics/js/bundle.js"></script>
   </body>
 </html>
