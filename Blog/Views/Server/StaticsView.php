@@ -26,12 +26,11 @@ class StaticsView extends View
       Memory::get(HTTP)->set(HEADER, ['content-type:text/css; charset=utf-8']);
     }
     
-    if (isset($args['subfolder'])) {
-      $this->content = file_get_contents($dir . $args['folder'] . DS .  $args['subfolder'] . DS . $args['file']);
-    } else {
-      $this->content = file_get_contents($dir . $args['folder'] . DS . $args['file']);
+    unset($args['_route']);
+    $uri = $dir.implode(DS, $args);
+    if (file_exists($uri)) {
+      $this->content = file_get_contents($uri);
     }
-    
   }
 
   public function render()
