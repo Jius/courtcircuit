@@ -1,8 +1,16 @@
 {
-  "statics": {
+  "statics::nosub": {
     "route": "/statics/{folder}/{file}",
     "params": {
       "folder": ".+",
+      "file": ".+"
+    }
+  },
+  "statics::sub": {
+    "route": "/statics/{folder}/{subfolder}/{file}",
+    "params": {
+      "folder": ".+",
+      "subfolder": ".+",
       "file": ".+"
     }
   },

@@ -6,7 +6,7 @@ use Tiimber\Layout;
 class BlankLayout extends Layout
 {
   const EVENTS = [
-    'request::statics'
+    'request::statics::*'
   ];
 
   const TPL = "{{{content}}}";

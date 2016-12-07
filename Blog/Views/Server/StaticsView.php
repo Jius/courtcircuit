@@ -11,7 +11,7 @@ class StaticsView extends View
   use FolderResolverTrait;
 
   const EVENTS = [
-    'request::statics' => 'content'
+    'request::statics::*' => 'content'
   ];
 
   const TPL = '{{{file}}}';
@@ -25,8 +25,13 @@ class StaticsView extends View
     if ($args['folder'] == 'css') {
       Memory::get(HTTP)->set(HEADER, ['content-type:text/css; charset=utf-8']);
     }
-
-    $this->content = file_get_contents($dir . $args['folder'] . DS . $args['file']);
+    
+    if (isset($args['subfolder'])) {
+      $this->content = file_get_contents($dir . $args['folder'] . DS .  $args['subfolder'] . DS . $args['file']);
+    } else {
+      $this->content = file_get_contents($dir . $args['folder'] . DS . $args['file']);
+    }
+    
   }
 
   public function render()
