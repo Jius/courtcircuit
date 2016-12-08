@@ -6,6 +6,9 @@ $(document).ready(function() {
 		jsonUrl: '/statics/json/events.json',
 		dataType: 'json'
   });
+  
+  
+  
   /*
   * MAP LEAFLET + MAPZEN INIT
   *
