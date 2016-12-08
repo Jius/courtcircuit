@@ -95,10 +95,9 @@ $(document).ready(function() {
    
    $('.step-next').click(function() {
    
-    var target = parseInt($(this).attr('link-step'), 10),
-        step = target - 1;
-        
-    stepTitle = $('.step[data-step='+(target)+']').attr('data-title');
+    var target = parseInt($('.step-next').attr('link-step'), 10),
+        step = target - 1,
+        stepTitle = $('.step[data-step='+(target)+']').attr('data-title');
     
     if (validateStep(step)) {
       
@@ -115,9 +114,9 @@ $(document).ready(function() {
       
       
       if (target + 1 <= steps) {
-        $(this).attr('link-step', target+1);
+        $('.step-next').attr('link-step', target+1);
       } else {
-        $(this).hide();
+        $('.step-next').hide();
         $('.submit-producer-container').fadeToggle();
       }
       
@@ -126,16 +125,16 @@ $(document).ready(function() {
    });
    
    $('.step-prev').click(function() {
-    var target=parseInt($(this).attr('link-step'), 10),
+    var target=parseInt($('.step-prev').attr('link-step'), 10),
         stepTitle = $('.step[data-step='+(target)+']').attr('data-title');
     
     $('.step-indicator .active').html(target);
     $('.step-title').html("<b>"+stepTitle+"</b>");
     
     if (target - 1 <= 0) {
-      $(this).hide();
+      $('.step-prev').hide();
     } else {
-      $(this).attr('link-step', target-1);
+      $('.step-prev').attr('link-step', target-1);
     }
     
     $('.step-next').attr('link-step', target + 1);

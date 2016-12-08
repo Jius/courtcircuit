@@ -17,6 +17,11 @@ class ShopFormView extends View
           <p class="step-title center-align"></p>
           <p class="step-indicator center-align">Etape <span class="active">1</span> / <span class="total">3</span></p>
           
+          <div class="step-btn-container center-align">
+            <a class="waves-effect waves-light btn step-prev step-btn blue lighten-1"><i class="material-icons left">keyboard_arrow_left</i>Retour</a>
+            <a class="waves-effect waves-light btn step-next step-btn blue lighten-1"><i class="material-icons right">keyboard_arrow_right</i>Suivant</a>
+          </div>
+          
           <div class="step" data-title="Numéro de SIRET">
             <div class="row">
               <div class="input-field col s12">
@@ -141,7 +146,7 @@ class ShopFormView extends View
             </div>
           </div>
           
-          <div class="step-btn-container">
+          <div class="step-btn-container center-align">
             <a class="waves-effect waves-light btn step-prev step-btn blue lighten-1"><i class="material-icons left">keyboard_arrow_left</i>Retour</a>
             <a class="waves-effect waves-light btn step-next step-btn blue lighten-1"><i class="material-icons right">keyboard_arrow_right</i>Suivant</a>
           </div>

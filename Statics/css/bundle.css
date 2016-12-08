@@ -147,7 +147,9 @@
 .step-btn-container {
   margin: 65px 0 0 0;
 }
-
+.step-title {
+  font-size: 20px;
+}
 .adress-container {
   position: relative;
 }
