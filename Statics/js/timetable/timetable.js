@@ -11,19 +11,19 @@
   			days = '',
   			week = (typeof week !== 'undefined') ?  week : ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
   			
-  			title = '',
+  			titleDay = '',
   			fullView = '',
   			checkSplit = '',
   			splitView = '';
   	
   	$.each(week, function( index, day ) {
-  		title = day;
+  		titleDay = day;
   		day = day.toLowerCase();
 			fullView = '<div class="all"><div class="row"><div class="col s6"><input placeholder="De" id="hour-start-' + day + '" type="text" class="validate hour" name="hour-start-' + day + '"></div><div class="col s6"><input placeholder="À" id="hour-end-' + day + '" type="text" class="validate hour" name="hour-end-' + day + '"></div></div></div>';
 			checkSplit = '<p><input type="checkbox" class="filled-in check-split" id="split-' + day + '" name="split-' + day + '"/><label for="split-' + day + '">Interruption</label></p>';
 			splitView = '<div class="split">Matin:<div class="row"><div class="col s6"><input placeholder="De" id="hour-start-am-' + day + '" type="text" class="validate hour" name="hour-start-am-' + day + '"></div><div class="col s6"><input placeholder="À " id="hour-end-am-' + day + '" type="text" class="validate hour" name="hour-end-am-' + day + '"></div></div>Après-midi:<div class="row"><div class="col s6"><input placeholder="De " id="hour-start-pm-' + day + '" type="text" class="validate hour" name="hour-start-pm-' + day + '"></div><div class="col s6"><input placeholder="À " id="hour-end-pm-' + day + '" type="text" class="validate hour" name="hour-end-pm-' + day + '"></div></div></div>';
 					
-  		days = days + '<div class="col s2 day"><p class="label center-align">' + title + '</p><div class="opening"><p class="caption">Horaires</p>' + fullView + checkSplit + splitView + '</div></div>';
+  		days = days + '<div class="col s2 day"><p class="label center-align">' + titleDay + '</p><div class="opening"><p class="caption">Horaires</p>' + fullView + checkSplit + splitView + '</div></div>';
 		});
 		
 		html = '<div class="row"><div class="col s12"><p class="caption medium">Horaires et jours d"ouvertures</p><div class="row daytable">' + days + '</div></div><input type="hidden" name="daytable"></div>';
@@ -33,10 +33,14 @@
   
   function initialize()
   {
-  	var   memoryInput = $('input[name="daytable"]').val(); //If user reload navigator
-          
+  	var   memoryInput = $('input[name="daytable"]').val(), //If user reload navigator
+					allDay = $('input[name="all-day"]').prop('checked');
+    
+  /*
+  * DAYTABLE
+  */
     $('.daytable .day').each(function() {
-      var day = $(this).find('p').text().toLowerCase();
+      var day = $(this).find('p.label').text().toLowerCase();
       
       $(this).find('.opening').hide();
       if ($(this).find('.opening .check-split').prop('checked')) {
@@ -53,12 +57,6 @@
       
     });
     
-    $('input.check-split').change(function() {
-        $(this).parents('.opening').find('.all').slideToggle();
-        $(this).parents('.opening').find('.split').slideToggle();
-    });
-   
-   
 		$('.daytable .day p.label').click(function() {
 			var day = $(this).text().toLowerCase();
 			
@@ -69,21 +67,16 @@
 			$(this).parent('.day').toggleClass('selected');
 		
 		});
-		
-		var allDay = $('input[name="all-day"]').prop('checked');
     
-    if (allDay) {
-      $('.clocktable.all').show();
-      $('.clocktable.split').hide();
-    } else {
-      $('.clocktable.all').hide();
-      $('.clocktable.split').show();
-    }
-    
-    $('input[name="all-day"]').click(function() {
-      $('.clocktable.all').toggle();
-      $('.clocktable.split').toggle();
+	/*
+	* OPENNING HOURS
+	*/
+		//CHECKBOX LISTENNER (FULL DAY OR SPLIT)
+    $('input.check-split').change(function() {
+        $(this).parents('.opening').find('.all').slideToggle();
+        $(this).parents('.opening').find('.split').slideToggle();
     });
+   
   }
   
   function addOrDeleteDay(day, nameInput)
@@ -99,9 +92,11 @@
 		    } else {
 		      val = val.replace(day , '');
 		    }
+		    
 		  }
 		  
-		  return val;
+	  	return val;
 		});
 	}
+	
 })(jQuery);
