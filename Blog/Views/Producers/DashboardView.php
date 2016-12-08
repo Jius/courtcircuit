@@ -57,16 +57,9 @@ class DashboardView extends View
       <a class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">add</i></a>
       
       <div class="row">
-      
-        {{#events}}
-        {{/events}}
-        
-        {{^events}}
-          <div class="col s12">
-            <p>Aucuns déplacements enregistrés.</p>
-          </div>
-        {{/events}}
-        
+        <div class="col s12">
+          <div class="monthly" id="calendar"></div>
+        </div>
       </div>
       
     </div>

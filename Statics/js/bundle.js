@@ -1,5 +1,11 @@
 var $ = window.$ || {};
 $(document).ready(function() {
+  
+  $('#calendar').monthly({
+    mode: 'event',
+		jsonUrl: '/statics/json/events.json',
+		dataType: 'json'
+  });
   /*
   * MAP LEAFLET + MAPZEN INIT
   *

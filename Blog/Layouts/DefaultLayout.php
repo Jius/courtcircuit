@@ -19,6 +19,7 @@ class DefaultLayout extends Layout
     <link rel="stylesheet" href="/statics/css/pickdate/default.css">
     <link rel="stylesheet" href="/statics/css/pickdate/default.date.css">
     <link rel="stylesheet" href="/statics/css/pickdate/default.time.css">
+    <link rel="stylesheet" href="/statics/css/monthly/monthly.css">
     <link rel="stylesheet" href="/statics/css/bundle.css">
   </head>
   <body>
@@ -39,6 +40,7 @@ class DefaultLayout extends Layout
     <script src="/statics/js/pickdate/picker.date.js"></script>
     <script src="/statics/js/pickdate/picker.time.js"></script>
     <script src="/statics/js/timetable/timetable.js"></script>
+    <script src="/statics/js/monthly/monthly.js"></script>
     <script src="/statics/js/bundle.js"></script>
   </body>
 </html>

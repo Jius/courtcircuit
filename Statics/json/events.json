@@ -1,0 +1,14 @@
+{
+	"monthly": [
+		{
+		"id": 1,
+		"name": "Whole month event",
+		"startdate": "2016-10-01",
+		"enddate": "2016-10-31",
+		"starttime": "12:00",
+		"endtime": "2:00",
+		"color": "#99CCCC",
+		"url": ""
+		}
+	]
+}
