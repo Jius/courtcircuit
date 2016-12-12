@@ -57,6 +57,9 @@
     "params": {
       "id": ".+"
     }
+  },
+  "producer::logged::event::new": {
+   "route": "/nouveau/evenement"
   }
   
 }

@@ -17,7 +17,6 @@ class DefaultLayout extends Layout
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.css">
     <link rel="stylesheet" href="/statics/css/pickdate/default.css">
-    <link rel="stylesheet" href="/statics/css/pickdate/default.date.css">
     <link rel="stylesheet" href="/statics/css/pickdate/default.time.css">
     <link rel="stylesheet" href="/statics/css/monthly/monthly.css">
     <link rel="stylesheet" href="/statics/css/bundle.css">
@@ -37,7 +36,6 @@ class DefaultLayout extends Layout
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.js"></script>
     <script src="/statics/js/pickdate/picker.js"></script>
-    <script src="/statics/js/pickdate/picker.date.js"></script>
     <script src="/statics/js/pickdate/picker.time.js"></script>
     <script src="/statics/js/timetable/timetable.js"></script>
     <script src="/statics/js/monthly/monthly.js"></script>

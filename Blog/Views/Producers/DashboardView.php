@@ -54,7 +54,7 @@ class DashboardView extends View
     
     <div class="col s12 m6 l6">
       <p class="title big blue-text dash-lab">Evénements & Déplacements</p>
-      <a class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">add</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light purple" href="/nouveau/evenement"><i class="material-icons">add</i></a>
       
       <div class="row">
         <div class="col s12">
