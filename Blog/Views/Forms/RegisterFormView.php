@@ -25,7 +25,7 @@ class RegisterFormView extends View
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input id="email" name="email" type="email" class="validate" required>
+            <input id="email" name="email" type="email" class="validate check-exist" required>
             <label for="email">Email</label>
           </div>
           <div class="input-field col s6">
@@ -41,13 +41,13 @@ class RegisterFormView extends View
         </div>
         <div class="row">
           <div class="col s12">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Se connecter
+            <button class="btn waves-effect waves-light" type="submit">Se connecter
               <i class="material-icons right">send</i>
             </button>
           </div>
         </div>
         
-        <input type="hidden" name="role" value="{{role}}">
+        <input type="hidden" name="role" value="{{role}}" id="role">
         {{#pro?}}
           <input type="hidden" name="approved_pro" value="false">
         {{/pro?}}

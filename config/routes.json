@@ -21,6 +21,10 @@
     "route": "/proposition"
   },
   
+  "ajax::email::exist": {
+    "route": "/check-email-exist"
+  },
+  
   "action::login": {
     "route": "/login"
   },

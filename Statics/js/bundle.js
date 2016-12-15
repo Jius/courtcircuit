@@ -75,6 +75,32 @@ $(document).ready(function() {
   });
   
   
+  $('input#email.check-exist').blur(function() {
+    var emailVal = $(this).val(),
+        emailValid = $(this).hasClass('valid'),
+        tableVal = $('input#role').val(),
+        target = $(this);
+        console.log(emailVal);
+        console.log(emailValid);
+    if (emailValid) {
+      $.ajax({
+       url : '/check-email-exist',
+       type : 'GET',
+       data : {email : emailVal, table : tableVal} ,
+       dataType : 'text',
+
+       complete : function(response){
+         if (response.responseText == 'OK') {
+           msg_input(target, 'Email disponible');
+         } else {
+           msg_input(target, response.responseText, 'error');
+         }
+       }
+      });
+    } else {
+      msg_input(target, 'Email incorrect', 'error');
+    }
+  });
   
   //Init step form producer
   $('.step-prev').hide();
@@ -289,7 +315,7 @@ $(document).ready(function() {
             if (EstSiretValide(obj.val())) {
               return true;
             } else {
-              error_input(obj, "Le SIRET n'est pas correct, veuillez le vérifier.");
+              msg_input(obj, "Le SIRET n'est pas correct, veuillez le vérifier.", "error");
               return false;
             }
             
@@ -306,12 +332,12 @@ $(document).ready(function() {
           if ($("input[name=itinerant]").prop("checked")) {
             return true;
           } else {
-            error_input(obj, "Veuillez renseigner ce champs.");
+            msg_input(obj, "Veuillez renseigner ce champs.", "error");
             return false;
           }
         
         } else {
-          error_input(obj, "Veuillez renseigner ce champs.");
+          msg_input(obj, "Veuillez renseigner ce champs.", "error");
           return false;
         }
       } else {
@@ -319,15 +345,34 @@ $(document).ready(function() {
       }
     }
     
-    function error_input(target, msg, delay) {
-      delay = delay || 5000;
-      target.removeClass('valid');
-      target.addClass('invalid');
+    
+    /*
+    * msg_input: print a message for input (valid or error)
+    *
+    * @target: the input
+    * @msg: message to print
+    * @pos: class for position text ("left" / "right")
+    */
+    function msg_input(target, msg, type, pos) {
+      removePreviousMsg(target);
+      type = (type == 'error' ? 'invalid' : 'valid') || 'valid';
+      pos = (pos == 'left' ? 'to-left' : 'to-right') || 'to-right';
+      var color = (type == 'valid' ? ' green-text' : ' red-text');
       
-      target.after("<div class='input-error'>" + msg  + "</div>");
-      $('.input-error').delay(delay).hide(0);
+      target.removeClass(reverseClass(type));
+      target.addClass(type);
+      
+      target.after("<div class='input-msg " + pos + color + "'>" + msg  + "</div>");
       
       target.next('label').addClass('active');
+    }
+    
+    function reverseClass(val) {
+      return (val == 'valid' ? 'invalid' : 'valid')
+    }
+    
+    function removePreviousMsg(target) {
+      target.nextAll('.input-msg').remove();
     }
    
    function onLocationFound(e) {

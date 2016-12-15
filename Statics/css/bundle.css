@@ -317,33 +317,21 @@ label span.required {
   display: inline-block;
   padding: 10px;
 	position: absolute;
-	background: #ffffff;
-	border: 1px solid #d1d1d1;
-	bottom: -45px;
-	left: 0;
-}
-.input-error:after, .input-error:before {
-	bottom: 100%;
-	left: 20%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
+	bottom: -20px;
+	right: 0;
 }
 
-.input-error:after {
-	border-color: rgba(255, 255, 255, 0);
-	border-bottom-color: #ffffff;
-	border-width: 15px;
-	margin-left: -15px;
+.input-msg {
+  display: inline-block;
+  padding: 10px;
+	position: absolute;
+	bottom: -20px;
 }
-.input-error:before {
-  border-color: rgba(209, 209, 209, 0);
-  border-bottom-color: #d1d1d1;
-	border-width: 16px;
-	margin-left: -16px;
+.input-msg.to-right {
+	right: 0;
+}
+.input-msg.to-left {
+	left: 0;
 }
 
 .text-shadow {

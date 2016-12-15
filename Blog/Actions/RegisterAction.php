@@ -16,10 +16,8 @@ class RegisterAction extends Action
   {
     $post = $request->post;
 
-    if (!empty((array) $post) && $table !== '') {
-      
+    if (!empty((array) $post)) {
       if ($post->get('email') !== '') {
-        
         $registration = $this->preparePost($post);
         $id = R::store($registration);
         
@@ -36,38 +34,35 @@ class RegisterAction extends Action
           
         }
       }
-      
     }
-    
   }
   
   private function preparePost($post) 
   {
-    
     $table = $post->get('role');
     $r = R::dispense($table);
     
     foreach($post as $key=>$value) {
-      
       if ($key !== 'role') {
-        
-        $r->$key = $value;
-        
+        $r->$key = ($key == "password" ? password_hash($value, PASSWORD_DEFAULT) : $value);
       }
-      
     }
-    
     return $r;
   }
   
+  private function checkEmailExist($email, $table)
+  {
+    $emailExist  = R::count( $table , ' email = ? ', [ $email ] );
+    return ($emailExist >= 1 ? true : false);
+  }
   
   /*
   * prepareUserSession()
   * Rec in session all infos about user without the password and action field.
   */
   
-  private function prepareUserSession($datas) {
-    
+  private function prepareUserSession($datas) 
+  {
     $user = [];
     
     foreach ($datas as $key=>$value) {
