@@ -154,13 +154,6 @@
   position: relative;
 }
 
-.indicator-adress {
-  left: -280px;
-  max-width: 250px;
-  position: absolute;
-  top: 50px;
-}
-
 #map {
   height:180px;
   width: 100%;
@@ -192,14 +185,15 @@
   padding-bottom: 30px;
 }
 
-#submit-adress {
+.submit-adress {
   bottom: 5px;
-  color: white;
+  color: white !important;
   margin: 0 0 5px 0;
   height: 30px;
-  line-height: 30px;
-  left: 25px;
+  line-height: 20px;
+  right: 20px;
   position: absolute;
+  padding: 5px 10px;
 }
 
 .form-container {

@@ -68,6 +68,14 @@ $(document).ready(function() {
   
   
   $(document).on ("click", "#submit-adress", function () {
+    var text = ($(this).text() == 'Sélectionner' ? 'Désélectionner' : 'Sélectionner');
+    
+    $(this).text(text);
+    $(this).toggleClass('pink');
+    $(this).prev().toggleClass('pink-text');
+    
+    $("input[title='search-map']").prop('disabled', function (_, val) { return ! val; });
+    
     $('#adress').attr('value', $(this).attr('adress'));
     $('#zipcode').attr('value', $(this).attr('zipcode'));
     $('#city').attr('value', $(this).attr('city'));
@@ -404,7 +412,8 @@ $(document).ready(function() {
   
   function onSelect(e) {
     //Create btn submit if don't exist
-    $('<a class="waves-effect waves-light btn" id="submit-adress" coordinates="'+e.feature.geometry.coordinates+'" adress="'+e.feature.properties.name+'" zipcode="'+e.feature.properties.postalcode+'" city="'+e.feature.properties.locality+'">Valider</a>').insertAfter('.leaflet-popup-content');
+    console.log(e.feature);
+    $('<a class="waves-effect waves-light btn submit-adress" id="submit-adress" coordinates="'+e.feature.geometry.coordinates+'" adress="'+e.feature.properties.label+'" zipcode="'+e.feature.properties.postalcode+'" city="'+e.feature.properties.locality+'">Sélectionner</a>').insertAfter('.leaflet-popup-content');
   }
   
   /**

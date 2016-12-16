@@ -80,15 +80,6 @@ class ShopFormView extends View
                 </div>
                 <div id="adress-map" class="m-t-med"></div>
               </div>
-              
-              <div class="indicator-adress">
-                  <p class="title small grey-text">Votre sélection sur la map</p>
-                  <input placeholder="Adresse" id="adress" type="text" name="adress" class="validate" disabled>
-                  <input placeholder="Code Postal" id="zipcode" type="text" name="zipcode" class="validate" disabled>
-                  <input placeholder="Ville" id="city" type="text" name="city" class="validate" disabled>
-              </div>
-              
-              <input id="coordinates" type="hidden" name="coordinates">
             </div>
           </div>
           
@@ -131,7 +122,6 @@ class ShopFormView extends View
             
             <p class="caption">Insérer des mots-clés pour mieux vous retrouver, par les internautes</p>
             <div class="chips chips-placeholder"></div>
-            <input id="hiddentags" type="hidden" name="tags">
           </div>
           
           <div class="step" data-title="Horaires et jours d'ouvertures">
@@ -140,7 +130,7 @@ class ShopFormView extends View
           
           <div class="row submit-producer-container">
             <div class="col s12">
-              <button class="btn waves-effect waves-light right orange" type="submit" name="action" id="submit-producer">Enregistrer la boutique
+              <button class="btn waves-effect waves-light right orange" type="submit" id="submit-producer">Enregistrer la boutique
                 <i class="material-icons right">send</i>
               </button>
             </div>
@@ -150,6 +140,12 @@ class ShopFormView extends View
             <a class="waves-effect waves-light btn step-prev step-btn blue lighten-1"><i class="material-icons left">keyboard_arrow_left</i>Retour</a>
             <a class="waves-effect waves-light btn step-next step-btn blue lighten-1"><i class="material-icons right">keyboard_arrow_right</i>Suivant</a>
           </div>
+          
+          <input id="coordinates" type="hidden" name="coordinates">
+          <input id="adress" type="hidden" name="adress" class="validate">
+          <input id="zipcode" type="hidden" name="zipcode" class="validate">
+          <input id="city" type="hidden" name="city" class="validate">
+          <input id="hiddentags" type="hidden" name="tags">
           
           <input type="hidden" name="validate_shop" value="false">
           <input type="hidden" name="owner" value="{{producerId}}">
