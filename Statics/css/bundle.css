@@ -81,15 +81,14 @@
 .no-bottom {
   margin-bottom: 0px !important;
 }
+
 .welcome {
-  margin-top: 10%;
-}
-.welcome .login {
-  margin: 0 20px 0 0;
-}
-.welcome .producer {
   margin-top: 5%;
 }
+.welcome h1 {
+  margin :0 !important;
+}
+
 .form-container-index {
   margin-top: 10%;
 }
@@ -104,18 +103,14 @@
 .search-input {
   -webkit-border-radius: 5px 5px 5px 5px !important;
   border-radius: 5px 5px 5px 5px !important;
-  border: 1px solid #e0e0e0  !important;
+  border: 1px solid black !important;
   color: black;
   margin: 0 !important;
   font-size: 25px !important;
   height: 4rem !important;
   padding-left: 10px !important;
 }
-.search-btn{
-  position: absolute;
-  right: -70px;
-  top: 3px;
-}
+
 .my-location {
   margin: 0 0 0 30px;
 }
@@ -304,7 +299,10 @@ label span.required {
   margin-top: 20px !important;
 }
 .m-t-big {
-  margin-top: 40px !important;
+  margin-top: 8% !important;
+}
+.m-t-big-1 {
+  margin-top: 15% !important;
 }
 
 .input-msg {
@@ -325,4 +323,9 @@ label span.required {
 
 .text-shadow {
   text-shadow: 1px 3px 2px #000000;
+}
+
+.informations{
+  border-top: 1px dotted rgb(138, 138, 138);  
+  padding: 20px 0px;
 }
