@@ -307,14 +307,6 @@ label span.required {
   margin-top: 40px !important;
 }
 
-.input-error {
-  display: inline-block;
-  padding: 10px;
-	position: absolute;
-	bottom: -20px;
-	right: 0;
-}
-
 .input-msg {
   display: inline-block;
   padding: 10px;
@@ -326,6 +318,9 @@ label span.required {
 }
 .input-msg.to-left {
 	left: 0;
+}
+.msg-search-map {
+  bottom: -14px !important;
 }
 
 .text-shadow {

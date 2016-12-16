@@ -349,7 +349,12 @@ $(document).ready(function() {
           if ($("input[name=itinerant]").prop("checked")) {
             return true;
           } else {
-            msg_input(obj, "Veuillez renseigner ce champs.", "error");
+            //CAS SPECIAUX
+            if (obj.hasClass('leaflet-pelias-input')) {
+              msg_input(obj, "Veuillez sélectionner votre adresse.", "error", 'right', ' msg-search-map');
+            } else {
+              msg_input(obj, "Veuillez renseigner ce champs.", "error");
+            }
             return false;
           }
         
@@ -368,18 +373,21 @@ $(document).ready(function() {
     *
     * @target: the input
     * @msg: message to print
-    * @pos: class for position text ("left" / "right")
+    * @type: error or valid input (css)
+    * @pos: Position text ("left" / "right")
+    * @sup: supplement css class to add, default empty
     */
-    function msg_input(target, msg, type, pos) {
+    function msg_input(target, msg, type, pos, sup) {
       removePreviousMsg(target);
       type = (type == 'error' ? 'invalid' : 'valid') || 'valid';
       pos = (pos == 'left' ? 'to-left' : 'to-right') || 'to-right';
+      sup = sup || '';
       var color = (type == 'valid' ? ' green-text' : ' red-text');
       
       target.removeClass(reverseClass(type));
       target.addClass(type);
       
-      target.after("<div class='input-msg " + pos + color + "'>" + msg  + "</div>");
+      target.after("<div class='input-msg " + pos + color + sup + "'>" + msg  + "</div>");
       
       target.next('label').addClass('active');
     }
