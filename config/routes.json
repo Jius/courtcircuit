@@ -20,9 +20,11 @@
   "propal": {
     "route": "/proposition"
   },
-  
   "ajax::email::exist": {
     "route": "/check-email-exist"
+  },
+  "ajax::tag::get": {
+    "route": "/get-tags"
   },
   
   "action::login": {

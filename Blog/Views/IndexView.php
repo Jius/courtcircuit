@@ -17,12 +17,24 @@ class IndexView extends View
   </div>
 </div>
 
+<div class="row">
+  
+</div>
+
+
 <div class="row m-t-big">
   <form class="col s12">
     <p class="title medium">Rechercher des producteurs</p>
     <div class="row">
       <div class="col s5">
-        <input id="q" class="search-input white" name="q" placeholder="Quel type de producteur ?" type="text">
+        <div class="autocomplete search-input" id="multiple">
+          <div class="ac-users"></div>
+          <div class="ac-input">
+            <input type="text" id="multipleInput" placeholder="Entrez quelques mots-clés" data-activates="multipleDropdown" data-beloworigin="true" autocomplete="off" class="white">
+          </div>
+          <ul id="multipleDropdown" class="dropdown-content ac-dropdown"></ul>
+          <input type="hidden" name="multipleHidden" />
+        </div>
       </div>
       <div class="col s5">
         <input id="city" class="search-input white" name="city" placeholder="Autours de ?" type="text">
@@ -67,4 +79,8 @@ class IndexView extends View
   </div>
 </div>
 HTML;
+
+  public function render()
+  {
+  }
 }

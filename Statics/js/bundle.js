@@ -1,6 +1,108 @@
 var $ = window.$ || {};
 $(document).ready(function() {
   
+  var multiple = $('#multipleInput').materialize_autocomplete({
+                    multiple: {
+                        enable: true
+                    },
+                    appender: {
+                        el: '.ac-users',
+                        tagTemplate : '<div class="chip lime" data-id="<%= item.id %>" data-text="<%= item.text %>"><%= item.text %><i class="material-icons close">close</i></div>'
+                    },
+                    dropdown: {
+                        el: '#multipleDropdown'
+                    },
+                });
+  
+  var resultCache = {
+            'A': [
+                {
+                    id: 'Abe',
+                    text: 'Sia \"Zirdzi\u0146\u0161\"',
+                    highlight: 'Sia \"Zirdzi\u0146\u0161\"'
+                },
+                {
+                    id: 'Ari',
+                    text: 'Ari',
+                    highlight: '<strong>A</strong>ri'
+                }
+            ],
+            'B': [
+                {
+                    id: 'Abe',
+                    text: 'Abe',
+                    highlight: '<strong>A</strong>be'
+                },
+                {
+                    id: 'Baz',
+                    text: 'Baz',
+                    highlight: '<strong>B</strong>az'
+                }
+            ],
+            'BA': [
+                {
+                    id: 'Baz',
+                    text: 'Baz',
+                    highlight: '<strong>Ba</strong>z'
+                }
+            ],
+            'BAZ': [
+                {
+                    id: 'Baz',
+                    text: 'Baz',
+                    highlight: '<strong>Baz</strong>'
+                }
+            ],
+            'AB': [
+                {
+                    id: 'Abe',
+                    text: 'Abe',
+                    highlight: '<strong>Ab</strong>e'
+                }
+            ],
+            'ABE': [
+                {
+                    id: 'Abe',
+                    text: 'Abe',
+                    highlight: '<strong>Abe</strong>'
+                }
+            ],
+            'AR': [
+                {
+                    id: 'Ari',
+                    text: 'Ari',
+                    highlight: '<strong>Ar</strong>i'
+                }
+            ],
+            'ARI': [
+                {
+                    id: 'Ari',
+                    text: 'Ari',
+                    highlight: '<strong>Ari</strong>'
+                }
+            ],
+            'API': [
+                {
+                    id: '1',
+                    text: 'Apiculteur',
+                    highlight: '<strong>Apiculteur</strong>'
+                }
+            ]
+        };
+        
+        var test =  $.ajax({
+                       url : '/get-tags',
+                       type : 'GET',
+                       dataType : 'text',
+                
+                       complete : function(response){
+                         console.log(response);
+                       }
+                      });
+        
+        multiple.resultCache = resultCache;
+  
+  
   $('#calendar').monthly({
     mode: 'event',
 		jsonUrl: '/statics/json/events.json',
