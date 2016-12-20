@@ -19,7 +19,7 @@ class DashboardView extends View
   
   <div class="row shop-container">
     <div class="col s12 m6 l6">
-      <p class="title big blue-text dash-lab">Vos boutiques</p>
+      <p class="title big blue-text dash-lab">Vos structures</p>
       <a class="btn-floating btn-large waves-effect waves-light red" href="/pro/boutique"><i class="material-icons">add</i></a>
       
       <div class="row shops-card">
@@ -32,6 +32,12 @@ class DashboardView extends View
                 <span class="card-title text-shadow">{{title}}</span>
               </div>
               <div class="card-content">
+                {{#itinerant}}
+                  <span class="new badge" data-badge-caption="">Nomade</span>
+                {{/itinerant}}
+                {{^itinerant}}
+                  <span class="new badge amber" data-badge-caption="">Boutique</span>
+                {{/itinerant}}
                 <p>{{description}}</p>
               </div>
               <div class="card-action">
