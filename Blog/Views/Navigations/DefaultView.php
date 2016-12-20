@@ -24,14 +24,14 @@ class DefaultView extends View
             <ul class="nav right">
               {{#user?}}
                 <li>
-                  <a href="/pro/tableau-de-bord" class="tab black-text right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Aller au tableau de bord"><i class="material-icons">work</i>{{email}}</a>
+                  <a href="/pro/tableau-de-bord" class="tab black-text right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Aller au tableau de bord"><i class="small material-icons">account_circle</i>{{email}}</a>
                   <a class="btn-floating btn waves-effect waves-light red logout" href="/logout"><i class="material-icons">clear</i></a>
                 </li>
               {{/user?}}
               
               {{^user?}}
                 <li>
-                  <a href="/espace-producteur" class="tab black-text right"><i class="material-icons">work</i>Espace Producteur</a>
+                  <a href="/espace-producteur" class="tab black-text right"><i class="small material-icons">account_circle</i>Espace Producteur</a>
                 </li>
               {{/user?}}
               
@@ -42,14 +42,14 @@ class DefaultView extends View
           <ul class="side-nav" id="mobile-nav">
             {{#user?}}
               <li>
-                <a href="/pro/tableau-de-bord" class="black-text"><i class="material-icons">work</i>{{email}}</a>
+                <a href="/pro/tableau-de-bord" class="black-text"><i class="small material-icons">account_circle</i>{{email}}</a>
                 <a class="btn-floating btn waves-effect waves-light red logout mobile" href="/logout"><i class="medium material-icons white-text">clear</i></a>
               </li>
             {{/user?}}
             
             {{^user?}}
               <li>
-                <a href="/espace-producteur" class="black-text"><i class="material-icons">work</i>Espace Producteur</a>
+                <a href="/espace-producteur" class="black-text"><i class="small material-icons">account_circle</i>Espace Producteur</a>
               </li>
             {{/user?}}
           </ul>

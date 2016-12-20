@@ -15,7 +15,7 @@ class LoginFormView extends View
       <div class="col s6">
         <form class="register-pro" action="/login" method="post">
             <input type="hidden" name="role" value="{{role}}">
-            <p class="title big">Connectez vous à votre compte</p>
+            <p class="title big light-blue-text">Connectez vous à votre compte</p>
             <div class="row">
               <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate" required>
@@ -30,7 +30,7 @@ class LoginFormView extends View
             </div>
             <div class="row">
               <div class="col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Se connecter
+                <button class="btn waves-effect waves-light light-blue" type="submit" name="action">Se connecter
                   <i class="material-icons right">send</i>
                 </button>
               </div>
@@ -38,17 +38,17 @@ class LoginFormView extends View
         </form>
       </div>
       
-      <div class="col s6">
+      <div class="col s6 separator left">
         <div class="row">
           <div class="col s12">
-            <p class="title big left no-margin">Pas encore inscrit ?</p>
-            <a class="waves-effect waves-light btn register right light-blue hide-on-med-and-down" href="/{{role_t}}/nouveau">Je m'inscris</a>
+            <p class="title big left no-margin deep-orange-text">Pas encore inscrit ?</p>
+            <a class="waves-effect waves-light btn register right deep-orange hide-on-med-and-down" href="/{{role_t}}/nouveau">Je m'inscris</a>
           </div>
         </div>
         
         <div class="row show-on-medium-and-down">
           <div class="col s12">
-            <a class="waves-effect waves-light btn big register left light-blue hide-on-large-only" href="/{{role_t}}/nouveau">Je m'inscris</a>
+            <a class="waves-effect waves-light btn big register left deep-orange hide-on-large-only" href="/{{role_t}}/nouveau">Je m'inscris</a>
           </div>
         </div>
         
@@ -78,7 +78,7 @@ class LoginFormView extends View
         
         <div class="row">
           <div class="col s12">
-            <a class="waves-effect waves-light btn big register left light-blue" href="/{{role_t}}/nouveau">Je m'inscris</a>
+            <a class="waves-effect waves-light btn big register left deep-orange" href="/{{role_t}}/nouveau">Je m'inscris</a>
           </div>
         </div>
         
