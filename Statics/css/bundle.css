@@ -82,13 +82,6 @@
   margin-bottom: 0px !important;
 }
 
-.welcome {
-  margin-top: 5%;
-}
-.welcome h1 {
-  margin :0 !important;
-}
-
 .form-container-index {
   margin-top: 10%;
 }
@@ -325,14 +318,34 @@ label span.required {
   text-shadow: 1px 3px 2px #000000;
 }
 
-.informations{
-  border-top: 1px dotted rgb(138, 138, 138);  
-  padding: 20px 0px;
-}
-
 .separator.left{
   border-left: dotted #e0e0e0 2px;
 }
 .separator.right{
   border-left: dotted #e0e0e0 2px;
+}
+
+.gab {
+  
+}
+.gab.welcome {
+}
+.gab.welcome h1 {
+  margin :0 !important;
+}
+.gab.informations {
+  border-top: 1px dotted rgb(138, 138, 138);  
+  padding: 20px 0px;
+}
+
+.btn-gab {
+  position: fixed;
+  bottom: 3%;
+  left: 43%;
+  width: 76px !important;
+  height: 76px !important;
+}
+.btn-gab i {
+  line-height: 76px !important;
+  font-size: 5rem ;
 }

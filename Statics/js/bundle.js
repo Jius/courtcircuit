@@ -13,94 +13,42 @@ $(document).ready(function() {
                         el: '#multipleDropdown'
                     },
                 });
-  
-  var resultCache = {
-            'A': [
-                {
-                    id: 'Abe',
-                    text: 'Sia \"Zirdzi\u0146\u0161\"',
-                    highlight: 'Sia \"Zirdzi\u0146\u0161\"'
-                },
-                {
-                    id: 'Ari',
-                    text: 'Ari',
-                    highlight: '<strong>A</strong>ri'
-                }
-            ],
-            'B': [
-                {
-                    id: 'Abe',
-                    text: 'Abe',
-                    highlight: '<strong>A</strong>be'
-                },
-                {
-                    id: 'Baz',
-                    text: 'Baz',
-                    highlight: '<strong>B</strong>az'
-                }
-            ],
-            'BA': [
-                {
-                    id: 'Baz',
-                    text: 'Baz',
-                    highlight: '<strong>Ba</strong>z'
-                }
-            ],
-            'BAZ': [
-                {
-                    id: 'Baz',
-                    text: 'Baz',
-                    highlight: '<strong>Baz</strong>'
-                }
-            ],
-            'AB': [
-                {
-                    id: 'Abe',
-                    text: 'Abe',
-                    highlight: '<strong>Ab</strong>e'
-                }
-            ],
-            'ABE': [
-                {
-                    id: 'Abe',
-                    text: 'Abe',
-                    highlight: '<strong>Abe</strong>'
-                }
-            ],
-            'AR': [
-                {
-                    id: 'Ari',
-                    text: 'Ari',
-                    highlight: '<strong>Ar</strong>i'
-                }
-            ],
-            'ARI': [
-                {
-                    id: 'Ari',
-                    text: 'Ari',
-                    highlight: '<strong>Ari</strong>'
-                }
-            ],
-            'API': [
-                {
-                    id: '1',
-                    text: 'Apiculteur',
-                    highlight: '<strong>Apiculteur</strong>'
-                }
-            ]
-        };
         
-        var test =  $.ajax({
+        var resultTags = {};
+        var getTags =  $.ajax({
                        url : '/get-tags',
                        type : 'GET',
-                       dataType : 'text',
+                       dataType : 'json',
                 
                        complete : function(response){
-                         console.log(response);
+                         var  str = response.responseText,
+                              tags = JSON.parse(str.replace(/&quot;/g,'"'));
+                         
+                        $.each(tags, function( title, id ) {
+                          for (var i = 1; i <= title.length; i++) {
+                            var l = title.substr(0, i).toUpperCase(),
+                                details = {
+                                  id: id,
+                                  text: title
+                                };
+                                
+                            if (!Array.isArray(resultTags[l])) {
+                              resultTags[l] = [];
+                            } else {
+                            }
+                            resultTags[l].push(details);
+                          }
+                        });
                        }
                       });
         
-        multiple.resultCache = resultCache;
+        multiple.resultCache = resultTags;
+  
+  //INIT INDEX HEIGHT
+  $('.gab').height($( window ).height() - $('.header').height());
+  $('.btn-gab').click(function() {
+    $('html, body').animate({scrollTop:$( window ).height()});
+  });
   
   
   $('#calendar').monthly({

@@ -10,26 +10,27 @@ class GetTagsView extends View
     'request::ajax::tag::get' => 'content'
   ];
   
-  const TPL = <<<HTML
-{{response}}
-HTML;
+  const TPL = <<<EOS
+{{tags}}
+EOS;
 
   public function onGet($request, $args)
   {
     $tags = R::getAll( 'SELECT * FROM tag' );
     $arrayTags = [];
-    
-    //By letter
+
     foreach ($tags as $key=>$tag) {
-      for ($i = 1; $i <= strlen($tag['title']); $i++) {
-        $l = substr($tag['title'], 0, $i);
-        $arrayTags[$l][] = array(
-          'id' => $tag['id'],
-          'text' => $tag['title']
-        );
-      }
+      $arrayTags[$tag['title']] = $tag['id'];
     }
     
+    $arrayTags = json_encode($arrayTags, JSON_UNESCAPED_UNICODE);
     $this->tags = $arrayTags;
+  }
+  
+  public function render()
+  {
+    return [
+      'tags' => $this->tags
+    ];
   }
 }
